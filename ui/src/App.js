@@ -19,6 +19,7 @@ function App() {
             <Route path="/HowToPlay" element={<HowToPlay/>}/>
             <Route path="/GameMode" element={<GameMode/>}/>
             <Route path="/LeaderBoard" element={<LeaderBoard/>}/>
+            <Route path="/Profile" element={<Profile/>}/>
             <Route path="*" element={<NotFound/>}/>
           </Route>
         </Routes>
