@@ -6,6 +6,7 @@ import NotFound from './views/NotFound'
 import GameMode from './views/GameMode'
 import LeaderBoard from './views/LeaderBoard'
 import HowToPlay from './views/HowToPlay'
+import Profile from './views/Profile'
 import Layout from './layouts'
 import ThemeContextProvider from './context/themeContext'
 
