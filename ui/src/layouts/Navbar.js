@@ -16,6 +16,18 @@ import { Link } from 'react-router-dom';
 
 const pages = ['Game Modes', 'Leader Board', 'How to Play'];
 const settings = ['Profile', 'Settings', 'Logout'];
+const newPages = [
+  {
+    label: 'Game Mode',
+  path: './path/GameMode'},
+  {
+    label: 'LeaderBoard',
+    path: './path/LeaderBoard'},
+  {
+    label: 'How to Play',
+    path: './path/HowToPlay'}
+  ]
+console.log (newPages)
 
 function Navbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -38,9 +50,8 @@ function Navbar() {
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          
-          <GamepadIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} onClick = "/" />
+        <Toolbar disableGutters>          
+          <GamepadIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
           <Typography
             variant="h6"
             noWrap
@@ -54,6 +65,8 @@ function Navbar() {
               letterSpacing: '.3rem',
               color: 'inherit',
               textDecoration: 'none',
+              onClick:"/" 
+
             }}
           >
             TRIVIA GENIUS
@@ -125,7 +138,6 @@ function Navbar() {
               </Button>
             ))}
           </Box>
-
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
