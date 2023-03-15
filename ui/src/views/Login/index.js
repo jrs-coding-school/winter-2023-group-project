@@ -1,49 +1,117 @@
-import { Card, CardContent, Typography } from '@mui/material'
+import { Card, CardContent, Grid, Typography } from '@mui/material'
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import GamepadIcon from '@mui/icons-material/Gamepad';
 import React, { Fragment } from 'react'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from 'react';
+import { login } from '../../utility/api';
 import "./index.css"
-import { textAlign } from '@mui/system';
 
-function Login() {
+function LoginForm() {
+
+  const [usernameValue, setUsernameValue] = useState("")
+  const [passwordValue, setPasswordValue] = useState("")
+  const [errorMsg, setErrorMsg] = useState("")
+
+  const handleSignIn = async () => {
+
+    try {
+      // console.log('username value:', usernameValue)
+      // console.log('password value:', passwordValue)
+  
+      await login({
+        username: usernameValue, 
+        password: passwordValue
+      })
+
+      await routeToHome()
+      
+    } catch (error) {
+      console.error(error)
+      setErrorMsg("Invalid username or password.")
+    }
+  }
+
+  let navigate = useNavigate()
+
+  const routeToHome = () => {
+    let path = '/'
+    navigate(path)
+  }
+
   return (
     <Fragment>
-      <Card className='login-container'>
-        <CardContent sx={{display: 'grid', margin: '20px'}}>
-         
-          <Typography variant='h6'>Sign in</Typography>
+      <Grid 
+        container
+        direction="row"
+        justifyContent="center"
+      >
+        <Card className='form-container' sx={{borderRadius: '20px', boxShadow:'3px 2px 7px rgb(0, 0, 0, 0.5)'}}>
           
-            <div className='form'>
-              <TextField 
-              label="Username" 
-              sx={{marginBottom: '15px', 
-              marginTop: '10px',}}
-              />
+          <CardContent sx={{display: 'grid', margin: '20px'}}>
 
-              <TextField
-                id="outlined-password-input"
-                label="Password"
-                type="password"
-              />
-            </div>
+            <GamepadIcon sx={{display: 'flex', justifySelf: 'center', color: '#42a5f5'}} />
+            <Typography
+              fontFamily='monospace'
+              fontWeight='700'
+              display='flex'
+              justifyContent='center'
+              fontSize='30px'
+              color='#0288d1'
+              > 
+                TRIVIA GENIUS
+            </Typography>
+
+            <Typography variant='h6' fontWeight='bold' mt='10px'>Sign in</Typography>
             
-            <Link>
-                <Typography variant='caption' sx={{color:'grey', textAlign:'right'}}>Forgot password</Typography>
-            </Link>
-            <Button 
-              variant="contained" 
-              sx={{marginTop: '10px',
-              width: '90px'}}>
-                sign in
-            </Button>
+              <Typography color='red' variant='caption'>{errorMsg}</Typography>
+
+              <Grid 
+                container
+                direction="column"
+                justify="center"
+              >
+                <TextField 
+                className='form'
+                label="Username" 
+                sx={{marginBottom: '15px', marginTop: '10px',}}
+                onChange={username => setUsernameValue(username.target.value)}
+                value={usernameValue}
+                />
+
+                <TextField
+                 className='form'
+                  id="outlined-password-input"
+                  label="Password"
+                  type="password"
+                  sx={{marginBottom: '5px'}}
+                  onChange={password => setPasswordValue(password.target.value)}
+                  value={passwordValue}
+                />
+              </Grid>
+              
+              <Link to={'/notfound'}>
+                <Typography variant='caption'sx={{color:'grey'}}>
+                  Forgot password
+                </Typography>
+              </Link>
+
+              <Button 
+                className='button'
+                variant="contained" 
+                sx={{marginTop: '10px', width: '90px'}}
+                onClick={() => handleSignIn()}
+                >
+                  sign in
+              </Button>
+
+          </CardContent>
           
-
-
-        </CardContent>
-      </Card> 
+        </Card> 
+      </Grid>
     </Fragment>
   )
 }
 
-export default Login
+export default LoginForm
