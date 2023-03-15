@@ -9,12 +9,16 @@ exports.createUser = async (userData) => {
   const hash = await bcrypt.hash(password, 10)
 
   // Insert the user into the database
-  await knex('user').insert({
+  const result = await knex('user').insert({
     ...userData,
     username: username,
     password: hash //store the hash. DO NOT store a plaintext password!
   })
-  return
+
+  // Get the newly created user
+  const user = await knex('user').select('*').where('id', result[0])
+  
+  return user
 }
 
 exports.showUserByUsername = async (username) => {
