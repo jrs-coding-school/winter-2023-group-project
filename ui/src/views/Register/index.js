@@ -1,7 +1,8 @@
-import { Card, CardContent, Grid, Typography } from '@mui/material'
+import { Card, CardContent, Grid, Typography } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import GamepadIcon from '@mui/icons-material/Gamepad';
+import ListItem from '@mui/material/ListItem';
 import React, { Fragment } from 'react'
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from 'react';
@@ -101,6 +102,12 @@ function RegistrationForm() {
                   onChange={password => setPasswordValue(password.target.value)}
                   value={passwordValue}
                 />
+                
+                <Typography variant='caption'>Password requirements:
+                  <ListItem disablePadding={true} sx={{ display: 'list-item', ml: '10px' }}>8 characters or longer.</ListItem>
+                  <ListItem disablePadding={true} sx={{ display: 'list-item', ml: '10px' }}>Contain a number.</ListItem>
+                </Typography>
+
               </Grid>
               
               <Link to={'/login'}>
