@@ -1,7 +1,8 @@
 import { Card, CardContent, Grid, Typography } from '@mui/material'
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import GamepadIcon from '@mui/icons-material/Gamepad';
+import GamepadIcon from '@mui/icons-material/Gamepad'
+import Box from '@mui/material/Box';
 import React, { Fragment } from 'react'
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from 'react';
@@ -91,20 +92,31 @@ function LoginForm() {
                 />
               </Grid>
               
-              <Link to={'/notfound'}>
+              <Link to={'/notfound'} className='forgot-password'>
                 <Typography variant='caption'sx={{color:'grey'}}>
                   Forgot password
                 </Typography>
               </Link>
 
+            <Box
+            sx={{display: 'flex', justifySelf: 'center', marginTop: '10px'}}
+            >
               <Button 
-                className='button'
                 variant="contained" 
-                sx={{marginTop: '10px', width: '90px'}}
+                sx={{width: '90px'}}
                 onClick={() => handleSignIn()}
                 >
                   sign in
               </Button>
+
+              <Link to="/register" style={{ textDecoration: 'none' }}>
+                <Button 
+                  variant="outlined" 
+                  sx={{width: '100px', ml: '20px'}}>
+                    Sign up
+                </Button>
+              </Link>
+            </Box>
 
           </CardContent>
           
