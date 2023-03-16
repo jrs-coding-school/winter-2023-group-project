@@ -8,6 +8,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from 'react';
 import { login } from '../../utility/api';
 import "./index.css"
+import { setToken } from '../../utility/utils';
 
 function LoginForm() {
 
@@ -21,10 +22,14 @@ function LoginForm() {
       // console.log('username value:', usernameValue)
       // console.log('password value:', passwordValue)
   
-      await login({
+      const tokenValue = await login({
         username: usernameValue, 
         password: passwordValue
       })
+
+      // console.log('token value:', tokenValue.token)
+
+      await setToken(tokenValue.token)
 
       await routeToHome()
       
@@ -66,7 +71,7 @@ function LoginForm() {
 
             <Typography variant='h6' fontWeight='bold' mt='10px'>Sign in</Typography>
             
-              <Typography color='red' variant='caption'>{errorMsg}</Typography>
+            <Typography color='red' variant='caption'>{errorMsg}</Typography>
 
               <Grid 
                 container
@@ -74,11 +79,11 @@ function LoginForm() {
                 justify="center">
 
                 <TextField 
-                className='form'
-                label="Username" 
-                sx={{marginBottom: '15px', marginTop: '10px',}}
-                onChange={username => setUsernameValue(username.target.value)}
-                value={usernameValue}
+                  className='form'
+                  label="Username" 
+                  sx={{marginBottom: '15px', marginTop: '10px',}}
+                  onChange={username => setUsernameValue(username.target.value)}
+                  value={usernameValue}
                 />
 
                 <TextField
@@ -96,14 +101,13 @@ function LoginForm() {
                 sx={{display: 'flex', 
                 justifySelf: 'center'}}>
 
-                <Link to={'/notfound'}>
+                <Link to={'/forgot-password'}>
                   <Typography variant='caption'sx={{color:'grey'}}>
                     Forgot password
                   </Typography>
                 </Link>
 
-
-                <Link to={'/notfound'}>
+                <Link to={'/register'}>
                   <Typography variant='caption'
                   sx={{color:'grey', ml: '20px'}}>
                     Create an account
