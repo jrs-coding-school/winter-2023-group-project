@@ -29,7 +29,6 @@ exports.showUserById = async (id) => {
 }
 
 exports.showAllUsers = async () => {
-  console.log('made it to the service')
   const user = await knex('user').select('*') 
   return user
 }
