@@ -1,7 +1,11 @@
 import React from "react"
+import { utilityJSON } from "../../utility/utils"
 
 function Home (props) {
-  return <div>Home</div>
+
+// console.log(utilityJSON())
+
+  return <div>This is my home test</div>
 }
 
 export default Home
