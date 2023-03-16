@@ -71,8 +71,8 @@ function LoginForm() {
               <Grid 
                 container
                 direction="column"
-                justify="center"
-              >
+                justify="center">
+
                 <TextField 
                 className='form'
                 label="Username" 
@@ -92,31 +92,42 @@ function LoginForm() {
                 />
               </Grid>
               
-              <Link to={'/notfound'} className='forgot-password'>
-                <Typography variant='caption'sx={{color:'grey'}}>
-                  Forgot password
-                </Typography>
-              </Link>
+              <Box
+                sx={{display: 'flex', 
+                justifySelf: 'center'}}>
 
-            <Box
-            sx={{display: 'flex', justifySelf: 'center', marginTop: '10px'}}
-            >
+                <Link to={'/notfound'}>
+                  <Typography variant='caption'sx={{color:'grey'}}>
+                    Forgot password
+                  </Typography>
+                </Link>
+
+
+                <Link to={'/notfound'}>
+                  <Typography variant='caption'
+                  sx={{color:'grey', ml: '20px'}}>
+                    Create an account
+                  </Typography>
+                </Link>
+
+              </Box>
+
               <Button 
                 variant="contained" 
-                sx={{width: '90px'}}
+                sx={{width: '90px', mt: '10px', display: 'flex', justifySelf: 'center'}}
                 onClick={() => handleSignIn()}
                 >
                   sign in
               </Button>
 
-              <Link to="/register" style={{ textDecoration: 'none' }}>
+              {/* <Link to="/register" style={{ textDecoration: 'none' }}>
                 <Button 
                   variant="outlined" 
                   sx={{width: '100px', ml: '20px'}}>
                     Sign up
                 </Button>
-              </Link>
-            </Box>
+              </Link> */}
+         
 
           </CardContent>
           
