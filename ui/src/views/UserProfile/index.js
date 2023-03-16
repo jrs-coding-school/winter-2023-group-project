@@ -12,20 +12,7 @@ import GameHistoryCard from "./GameHistoryCard";
 import GameHistoryContainer from "./GameHistoryContainer";
 import GameStatistics from "./GameStatistics";
 import { useState, useEffect } from "react";
-
-//API call to get the user profile based on username, returns user data object
-function GetUserProfile(username){
-  const [data, setData] = useState({})
-
-  console.log(`http://localhost:9000/${username}`)
-  useEffect(() => {
-    fetch(`http://localhost:9000/user/${username}`)
-    .then(res => res.json())
-    .then(data => setData(data))
-  }, [])
-
-  return data
-}
+import { getUserProfile } from "../../utility/api";
 
 //API call to get the gameMode values from the game table
 function GetGameModes(){
@@ -48,10 +35,17 @@ function GetGameModes(){
 }
 
 function UserProfile(props) {
+  const [data, setData] = useState()
   const { username } = useParams();
 
   // Get User Profile
-  const data = GetUserProfile(username)
+
+  useEffect(() => {
+    getUserProfile(username)
+      .then(data => setData(data))
+      .catch((error) => console.log(error))
+  }, [username])
+  
 
   //Get gamemode enum from the database to populate select box
   const gameModeTypes = GetGameModes()
@@ -116,7 +110,7 @@ function UserProfile(props) {
               sx={{ marginTop: 4.5, marginLeft: 3 }}>
               Game Statistics
             </Typography>
-            <GameStatistics></GameStatistics>
+            <GameStatistics/>
           </Box>
         </Grid>
       </Grid>
