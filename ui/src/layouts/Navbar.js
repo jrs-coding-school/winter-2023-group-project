@@ -1,4 +1,4 @@
-import * as React from 'react';
+import {useEffect, useState} from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -13,25 +13,16 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import GamepadIcon from '@mui/icons-material/Gamepad';
 import { Link } from 'react-router-dom';
+import {isUserLoggedIn, getToken} from '../utility/utils'
+import {getUser} from '../utility/api'
 
-const pages = ['Game Modes', 'Leader Board', 'How to Play'];
-const settings = ['Profile', 'Settings', 'Logout'];
-const newPages = [
-  {
-    label: 'Game Mode',
-  path: './path/GameMode'},
-  {
-    label: 'LeaderBoard',
-    path: './path/LeaderBoard'},
-  {
-    label: 'How to Play',
-    path: './path/HowToPlay'}
-  ]
-console.log (newPages)
+
+
 
 function Navbar() {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [anchorElNav, setAnchorElNav] = useState(null);
+  const [anchorElUser, setAnchorElUser] = useState(null);
+  const [user, setUser] = useState(null);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -47,6 +38,49 @@ function Navbar() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  // Get user data from API
+  useEffect(() => {
+    // check if the use is logged in
+    if (isUserLoggedIn()) {
+      // get token
+      const token = getToken()
+      //fetch user's data
+      getUser(token)
+        .then((data) => setUser(data))
+        .catch((error) => console.log(error))
+    }
+  
+  }, [])
+
+  const settings = [
+    {
+      label: 'Profile',
+      path: `/user/${user?.username}`
+    }, 
+    {
+      label: 'Settings',
+      path: '/user/settings'
+    }, 
+    {
+      label: 'Logout',
+      path: '/user/logout'
+    }, 
+
+  ]
+  
+  const pages = [
+    {
+      label: 'Game Mode',
+      path: '/gamemode'},
+    {
+      label: 'LeaderBoard',
+      path: '/leaderboard'},
+    {
+      label: 'How to Play',
+      path: '/how-to-play'}
+    ]
+
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
@@ -102,8 +136,8 @@ function Navbar() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                <MenuItem component={Link} to={page.path} key={page.label} onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">{page.label}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -130,15 +164,22 @@ function Navbar() {
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
-                key={page}
+                component={Link} 
+                to={page.path}
+                key={page.label}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                {page}
+                {page.label}
               </Button>
             ))}
           </Box>
-          <Box sx={{ flexGrow: 0 }}>
+          {!isUserLoggedIn() ? 
+            <MenuItem component={Link} to={'/login'} key={'login'}>
+              <Typography textAlign="center">LOGIN</Typography>
+            </MenuItem>
+          :
+            <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
@@ -161,12 +202,13 @@ function Navbar() {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+                <MenuItem component={Link} to={setting.path} key={setting.label} onClick={handleCloseUserMenu}>
+                  <Typography textAlign="center">{setting.label}</Typography>
                 </MenuItem>
               ))}
             </Menu>
-          </Box>
+            </Box>
+          }
         </Toolbar>
       </Container>
     </AppBar>
