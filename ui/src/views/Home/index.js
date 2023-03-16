@@ -3,6 +3,7 @@ import { Grid, Typography } from '@mui/material';
 import Button from '@mui/material/Button';
 import '../../App.css';
 import {Link} from 'react-router-dom';
+import { Box } from "@mui/system";
 
 
 
@@ -14,11 +15,14 @@ const Item = (props) => (
 function Home (props) {
   return (
     
-    <Grid container spacing={2}>      
+    <Grid container spacing={2}> 
+    <Box>   
   <Grid item xs ={8}>
     <Item>
       <Typography variant="h1" component="div" gutterBottom />
-    <Button variant="contained">Quick Play</Button>
+      <Link to ="/GameMode">
+  <Button variant="contained">Quick Play</Button>
+</Link>
     
     </Item>
   </Grid>
@@ -45,7 +49,10 @@ Answering trivia questions (and especially answering them correctly) can make us
 Friendly competitiveness can enhance our mood, increase our ego and make us feel good in general. 
 When we win we experience a sense of satisfaction and we release hormones that make our brain feel good. 
 So, if you still haven't decided to become a Trivia Genius. Jump into our Quick Play and enjoy a three minute General Knowledge multiple choice Trivia teaser</p>
-<Button variant="contained">Quick Play</Button>
+<Link to ="/GameMode">
+  <Button variant="contained">Quick Play</Button>
+</Link>
+</Box>
 </Grid>
 
 )}
