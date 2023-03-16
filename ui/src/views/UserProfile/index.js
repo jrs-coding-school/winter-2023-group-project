@@ -35,7 +35,7 @@ function GetGameModes(){
 }
 
 function UserProfile(props) {
-  const [data, setData] = useState()
+  const [data, setData] = useState(null)
   const { username } = useParams();
 
   // Get User Profile
@@ -58,6 +58,9 @@ function UserProfile(props) {
     setGameMode(event.target.value)
   }
 
+  if (!data) {
+    return <>Loading...</>
+  }
 
   return (
     <div>
@@ -78,7 +81,7 @@ function UserProfile(props) {
 
       {/* Game History Grid */}
       <Grid direction="row" container spacing={1}>
-        <Grid container item sm={6}>
+        <Grid container direction="column" item sm={6}>
           <Box sx={{ display: "flex", marginLeft: 3, marginTop: 3 }}>
             <Typography variant="h5" component="div" sx={{ marginTop: 1.5 }}>
               Game History

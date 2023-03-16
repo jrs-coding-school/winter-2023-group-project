@@ -1,3 +1,4 @@
+import { Fragment } from 'react';
 import GameHistoryCard from './GameHistoryCard';
 
 function GameHistoryContainer( props ) {
@@ -5,11 +6,11 @@ function GameHistoryContainer( props ) {
   const {username} = props
   //query db for games by username and map through the result object and populate game history card
   return (
-    <div>
+    <Fragment>
       <GameHistoryCard></GameHistoryCard>
       <GameHistoryCard></GameHistoryCard>
       <GameHistoryCard></GameHistoryCard>
-    </div>
+    </Fragment>
   )
 }
 export default GameHistoryContainer
