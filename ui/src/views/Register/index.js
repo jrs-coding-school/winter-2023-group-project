@@ -8,6 +8,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from 'react';
 import { register } from '../../utility/api';
 import "./index.css"
+import { setToken } from '../../utility/utils';
 
 function RegistrationForm() {
   const [emailValue, SetEmailValue] = useState("")
@@ -18,15 +19,19 @@ function RegistrationForm() {
   const handleSignIn = async () => {
 
     try {
-      console.log('email value:', emailValue)
-      console.log('username value:', usernameValue)
-      console.log('password value:', passwordValue)
+      // console.log('email value:', emailValue)
+      // console.log('username value:', usernameValue)
+      // console.log('password value:', passwordValue)
       
-      await register({
+      const tokenValue = await register({
         email: emailValue,
         username: usernameValue, 
         password: passwordValue
       })
+
+      // console.log('token value', tokenValue.token)
+
+      await setToken(await tokenValue.token)
 
       await routeToHome()
       
