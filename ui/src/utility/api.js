@@ -64,3 +64,19 @@ export const register = async(data) => {
 
   return responseData
 }
+
+export const getUserProfile = async (username) => {
+
+  const response = await fetch(`${baseUrl}/user/${username}`, {
+    method: "GET",
+  })
+
+  const responseData = await response.json()
+
+  if (!response.ok) {
+    throw new Error(`Status Code: ${response?.status} - ${responseData?.message}`)
+  }
+
+  return responseData
+  
+}

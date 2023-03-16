@@ -27,3 +27,8 @@ exports.showUserById = async (id) => {
   const user = await knex('user').where('id', id).first()
   return user
 }
+
+exports.showAllUsers = async () => {
+  const user = await knex('user').select('*') 
+  return user
+}
