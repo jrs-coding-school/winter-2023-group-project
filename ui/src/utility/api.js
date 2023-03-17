@@ -27,11 +27,11 @@ export const login = async (data) => {
     }),
   })
 
-  if (!response.ok) {
-    throw new Error(response.error)
-  }
-
   const responseData = await response.json()
+
+  if (!response.ok) {
+    throw new Error(`Status Code: ${response?.status} - ${responseData?.message}`)
+  }
 
   return responseData
 }
@@ -56,11 +56,11 @@ export const register = async(data) => {
     body: JSON.stringify(data),
   })
 
-  if (!response.ok) {
-    throw new Error(response.error)
-  }
-
   const responseData = await response.json()
+
+  if (!response.ok) {
+    throw new Error(`Status Code: ${response?.status} - ${responseData?.message}`)
+  }
 
   return responseData
 }
