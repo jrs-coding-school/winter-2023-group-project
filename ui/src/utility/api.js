@@ -56,11 +56,11 @@ export const register = async(data) => {
     body: JSON.stringify(data),
   })
 
+  const responseData = await response.json()
+
   if (!response.ok) {
     throw new Error(`Status Code: ${response?.status} - ${responseData?.message}`)
   }
-
-  const responseData = await response.json()
 
   return responseData
 }
