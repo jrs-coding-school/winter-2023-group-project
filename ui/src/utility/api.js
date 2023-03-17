@@ -67,6 +67,7 @@ export const register = async(data) => {
 
 export const getUserProfile = async (username) => {
 
+  console.log(username)
   const response = await fetch(`${baseUrl}/user/${username}`, {
     method: "GET",
   })
@@ -79,4 +80,34 @@ export const getUserProfile = async (username) => {
 
   return responseData
   
+}
+
+export const getGameHistory = async (username) => {
+
+  const response = await fetch(`${baseUrl}/game/${username}`, {
+    method: "GET",
+  })
+
+  const responseData = await response.json()
+
+  if (!response.ok) {
+    throw new Error(`Status Code: ${response?.status} - ${responseData?.message}`)
+  }
+
+  return responseData
+}
+
+export const getGameStatistics = async (username) => {
+
+  const response = await fetch(`${baseUrl}/stats/${username}`, {
+    method: "GET",
+  })
+
+  const responseData = await response.json()
+
+  if (!response.ok) {
+    throw new Error(`Status Code: ${response?.status} - ${responseData?.message}`)
+  }
+
+  return responseData
 }

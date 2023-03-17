@@ -4,12 +4,16 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
 function GameHistoryCard( props ) {
-  
-  const gameDate = '3/12/2023'
-  const gameMode = 'QuickPlay'
-  const duration = '3 minutes'
-  const score = 34
-  const difficulty = 'easy'
+
+  const  {
+
+    gameDate, 
+    duration,
+    score,
+    difficulty,
+    gameMode
+
+  } = props
   
   return (
     <div>
