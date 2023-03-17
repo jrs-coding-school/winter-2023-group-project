@@ -6,7 +6,35 @@ exports.register = async (req, res) => {
   try {
     const userData = req.body
 
-    await createUser(userData)
+    if (userData.email === "" || userData.email === null) {
+      return res.status(406).json({message: "Email was not provided."})
+    }
+
+    const emailRegex = new RegExp(/^[A-Za-z0-9_!#$%&'*+\/=?`{|}~^.-]+@[A-Za-z0-9.-]+$/, "gm")
+    const isValidEmail = emailRegex.test(userData.email)
+    if(isValidEmail === false){
+      return res.status(406).json({message: "Email is invalid."})
+    }
+    
+    if (userData.username === "" || userData.username === null) {
+      return res.status(406).json({message: "Username was not provided."})
+    }
+
+    if (userData.password === "" || userData.password === null) {
+      return res.status(406).json({message: "Password was not provided."})
+    }
+
+    if (userData.password.length < 8){
+      return res.status(406).json({message: "Password is too short."})
+    }
+
+    const passwordRegex = new RegExp(/\d/)
+    const passwordHasNumber = passwordRegex.test(userData.password)
+    if (passwordHasNumber === false){
+      return res.status(406).json({message: "Password does not contain a number."})
+    }
+
+    const user = await createUser(userData)
     
     // Create a JWT and send it back to the client
     const token = jwt.sign({ id: user.id }, process.env.SECRET_KEY)
@@ -16,7 +44,7 @@ exports.register = async (req, res) => {
     console.log(error)
 
     if(error.code === 'ER_DUP_ENTRY') {
-      return res.status(409).json({message: "Account already exists"})
+      return res.status(409).json({message: "Account already exists."})
     }
 
     return res.status(500).json({message: "Internal Server Error"})
