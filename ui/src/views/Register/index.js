@@ -31,7 +31,7 @@ function RegistrationForm() {
       
       const tokenValue = await register({
         email: emailValue,
-        username: usernameValue, 
+        username: usernameValue.trim(), 
         password: passwordValue
       })
 
