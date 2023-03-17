@@ -25,6 +25,7 @@ function UserProfile() {
   const [data, setData] = useState(null)
   const { username } = useParams()
 
+  //Get user info by username passed in URL
   useEffect(() => {
     getUserProfile(username)
       .then(data => setData(data))

@@ -1,9 +1,8 @@
-const { getUserByName, getAllUsers } = require('../controller/user')
+const { getUserByName} = require('../controller/user')
 
 
 const user = (app) => {
 
-  app.get('/user', getAllUsers)
   app.get('/user/:username', getUserByName)
 
 }

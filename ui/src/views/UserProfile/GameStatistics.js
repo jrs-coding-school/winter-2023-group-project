@@ -28,7 +28,7 @@ function GameStatistics( props ) {
           
           <Typography sx={{ marginTop:1, marginBottom:1}}>Games Played: {data.gamesPlayed}</Typography> 
           <Typography sx={{ marginBottom:1}}>Correct Answer Rate: {data.correctAnswerPct}</Typography>
-          <Typography sx={{ marginBottom:1}}>Favorite Difficulty: {data.favDifficulty}</Typography>
+          <Typography sx={{ marginBottom:1}}>Favorite Difficulty: {data.favoriteDifficulty}</Typography>
           <Typography sx={{ marginBottom:1}}>Best Category: {data.bestCategory}</Typography>
           <Typography sx={{ marginBottom:1}}>Best Game Mode: {data.bestGameMode}</Typography>
         </Box>
