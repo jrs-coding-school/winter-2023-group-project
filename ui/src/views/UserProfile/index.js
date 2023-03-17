@@ -115,7 +115,7 @@ function UserProfile() {
               sx={{ marginTop: 4.5, marginLeft: 3 }}>
               Game Statistics
             </Typography>
-            <GameStatistics/>
+            <GameStatistics username={username} />
           </Box>
         </Grid>
       </Grid>
