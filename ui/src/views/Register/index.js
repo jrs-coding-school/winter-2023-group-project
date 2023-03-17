@@ -7,13 +7,14 @@ import React, { Fragment } from 'react'
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from 'react';
 import { register } from '../../utility/api';
-import "./index.css"
 import { setToken } from '../../utility/utils';
+import "./index.css"
 
 function RegistrationForm() {
   const [emailValue, SetEmailValue] = useState("")
   const [usernameValue, setUsernameValue] = useState("")
   const [passwordValue, setPasswordValue] = useState("")
+  const [retypePasswordValue, setRetypePasswordValue] = useState("")
   const [errorMsg, setErrorMsg] = useState("")
 
   const handleRegister = async () => {
@@ -22,6 +23,11 @@ function RegistrationForm() {
       // console.log('email value:', emailValue)
       // console.log('username value:', usernameValue)
       // console.log('password value:', passwordValue)
+      // console.log('retyped password value:', retypePasswordValue)
+
+      if (passwordValue !== retypePasswordValue){
+        return setErrorMsg('Passwords do not match.')
+      }
       
       const tokenValue = await register({
         email: emailValue,
@@ -99,13 +105,21 @@ function RegistrationForm() {
                 />
 
                 <TextField
-                 className='form'
-                  id="outlined-password-input"
+                  className='form'
                   label="Password"
                   type="password"
-                  sx={{marginBottom: '5px'}}
+                  sx={{marginBottom: '15px'}}
                   onChange={password => setPasswordValue(password.target.value)}
                   value={passwordValue}
+                />
+
+                <TextField
+                  className='form'
+                  label="Re-type password"
+                  type="password"
+                  sx={{marginBottom: '5px'}}
+                  onChange={retypePassword => setRetypePasswordValue(retypePassword.target.value)}
+                  value={retypePasswordValue}
                 />
                 
                 <Typography variant='caption'>Password requirements:
