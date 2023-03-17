@@ -8,7 +8,6 @@ import Grid from "@mui/material/Grid";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
-import GameHistoryCard from "./GameHistoryCard";
 import GameHistoryContainer from "./GameHistoryContainer";
 import GameStatistics from "./GameStatistics";
 import { useState, useEffect } from "react";
@@ -34,7 +33,7 @@ function GetGameModes(){
   return gameModeTypes
 }
 
-function UserProfile(props) {
+function UserProfile() {
   const [data, setData] = useState(null)
   const { username } = useParams();
 
@@ -45,22 +44,25 @@ function UserProfile(props) {
       .then(data => setData(data))
       .catch((error) => console.log(error))
   }, [username])
-  
-
+ 
   //Get gamemode enum from the database to populate select box
   const gameModeTypes = GetGameModes()
 
   // Handle state and change event if gameMode is changed
-  const [gameMode, setGameMode] = useState(10);
+  const [gameMode, setGameMode] = useState("All Modes")
 
   const handleChange = (event) => {
-    console.log("state before", event.target.value)
-    setGameMode(event.target.value)
+    setGameMode(event.target.value) 
   }
-
+  
   if (!data) {
     return <>Loading...</>
   }
+
+  //Format the date
+  // const date = data.dateCreated
+  // console.log(typeof date)
+  // console.log(date.toDateString())
 
   return (
     <div>
@@ -68,7 +70,7 @@ function UserProfile(props) {
       <Card sx={{ minWidth: 275, marginTop: 3 }}>
         <CardContent>
           <Box sx={{ display: "flex" }}>
-            <Avatar></Avatar>
+            <Avatar>{username.charAt().toUpperCase()}</Avatar>
             <Typography variant="h4" component="div" sx={{ marginLeft: 2 }}>
               {username}
             </Typography>
@@ -89,18 +91,18 @@ function UserProfile(props) {
 
             {/* Game Mode Selection Dropdown */}
             <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-              <Select defaultValue={10} displayEmpty onChange={handleChange}>
-                <MenuItem value={10}>{"All Modes"}</MenuItem>
-                <MenuItem value={20}>{gameModeTypes[0]}</MenuItem>
-                <MenuItem value={30}>{gameModeTypes[1]}</MenuItem>
-                <MenuItem value={40}>{gameModeTypes[2]}</MenuItem>
+              <Select defaultValue={"All Modes"} displayEmpty onChange={handleChange}>
+                <MenuItem value={"All Modes"} >{"All Modes"}</MenuItem>
+                <MenuItem value={gameModeTypes[0]}>{gameModeTypes[0]}</MenuItem>
+                <MenuItem value={gameModeTypes[1]}>{gameModeTypes[1]}</MenuItem>
+                <MenuItem value={gameModeTypes[2]}>{gameModeTypes[2]}</MenuItem>
               </Select>
             </FormControl>
           </Box>
 
           {/* Game History Cards */}
           <Box sx={{ flexDirection: "column" }}>
-            <GameHistoryContainer username={username}/>
+            <GameHistoryContainer username={username} gameMode={gameMode}/>
           </Box>
         </Grid>
 

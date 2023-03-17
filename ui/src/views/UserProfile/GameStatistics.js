@@ -4,11 +4,7 @@ import Box from '@mui/material/Box';
 
 function GameStatistics( props ) {
   
-  const gamesPlayed = 37
-  const correctAnswerPct = '74.7%'
-  const favDifficulty = 'Hard'
-  const bestCategory = 'Science'
-  const bestGameMode = 'Fast 25'
+  
   return (
     <div>
 
