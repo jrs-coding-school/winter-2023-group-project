@@ -1,9 +1,12 @@
 import React from 'react'
+import '../App.css'
 
-function Footer(props) {
+
+const Footer = () => {
   return (
-    <div>Footer</div>
-  )
-}
+    <div className='Footer'>
+        <p>Trivia Genius 2023&copy;</p></div>
+  );
+};
 
 export default Footer
