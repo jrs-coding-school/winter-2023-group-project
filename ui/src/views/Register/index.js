@@ -16,7 +16,7 @@ function RegistrationForm() {
   const [passwordValue, setPasswordValue] = useState("")
   const [errorMsg, setErrorMsg] = useState("")
 
-  const handleSignIn = async () => {
+  const handleRegister = async () => {
 
     try {
       // console.log('email value:', emailValue)
@@ -31,7 +31,7 @@ function RegistrationForm() {
 
       // console.log('token value', tokenValue.token)
 
-      await setToken(await tokenValue.token)
+      await setToken(tokenValue.token)
 
       await routeToHome()
       
@@ -125,7 +125,7 @@ function RegistrationForm() {
                 className='button'
                 variant="contained" 
                 sx={{marginTop: '10px', width: '90px'}}
-                onClick={() => handleSignIn()}
+                onClick={() => handleRegister()}
                 >
                   Register
               </Button>
