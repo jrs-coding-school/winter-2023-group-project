@@ -27,11 +27,11 @@ export const login = async (data) => {
     }),
   })
 
-  if (!response.ok) {
-    throw new Error(response.error)
-  }
-
   const responseData = await response.json()
+
+  if (!response.ok) {
+    throw new Error(`Status Code: ${response?.status} - ${responseData?.message}`)
+  }
 
   return responseData
 }
@@ -56,11 +56,34 @@ export const register = async(data) => {
     body: JSON.stringify(data),
   })
 
+  const responseData = await response.json()
+
   if (!response.ok) {
-    throw new Error(response.error)
+    throw new Error(`Status Code: ${response?.status} - ${responseData?.message}`)
   }
+
+  return responseData
+}
+
+
+
+
+
+export const getUser = async(token) => {
+
+  const response = await fetch(`${baseUrl}/user/token`, {
+    method: "GET", 
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    },
+  })
 
   const responseData = await response.json()
 
+  if (!response.ok) {
+    throw new Error(`Status Code: ${response?.status} - ${responseData?.message}`)
+  }
+  
   return responseData
 }
