@@ -7,6 +7,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import './index.css'
+import LetsPlayButton from '../../components/LetsPlayButton';
 
 function HowToPlay() {
   return (
@@ -91,16 +92,7 @@ function HowToPlay() {
       </Box>
       
       <Box align='center' p='3px'>
-        <Button 
-          component={Link} 
-          to='/gamemodes' 
-          variant='contained' 
-          size='large' 
-          sx={{boxShadow:'3px 2px 7px rgb(0, 0, 0, 0.5)'}}>
-          <Typography fontWeight='bold' fontSize='24px'>
-            let's play!
-          </Typography>
-        </Button>
+        <LetsPlayButton />
       </Box>
 
     </Fragment>
