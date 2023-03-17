@@ -18,7 +18,7 @@ function HowToPlay() {
 
       <Box display='flex' ml='20px' mr='20px'>
 
-        <Card className='card-container'>
+        <Card className='card-container' sx={{boxShadow:'3px 2px 7px rgb(0, 0, 0, 0.5)'}}>
           
           <CardContent>
 
@@ -41,7 +41,7 @@ function HowToPlay() {
         
         </Card>
         
-        <Card className='card-container'>
+        <Card className='card-container' sx={{boxShadow:'3px 2px 7px rgb(0, 0, 0, 0.5)'}}>
           
           <CardContent>
             
@@ -52,7 +52,7 @@ function HowToPlay() {
             <Typography align='center' pt='10px'>
             In this mode, you will play until you get 3 questions wrong. 
             Use your knowledge and critical thinking skills to answer 
-            the questions correctly. If a you answer a question incorrectly, 
+            the questions correctly. When a question is answered incorrectly, 
             you will receive a strike. Once you reach 3 strikes, the game will end.
             
             <br /> <br />
@@ -64,7 +64,7 @@ function HowToPlay() {
         
         </Card>
         
-        <Card className='card-container'>
+        <Card className='card-container' sx={{boxShadow:'3px 2px 7px rgb(0, 0, 0, 0.5)'}}>
           
           <CardContent>
             
@@ -90,8 +90,13 @@ function HowToPlay() {
 
       </Box>
       
-      <Box align='center'>
-        <Button component={Link} to='/gamemodes' variant='contained' size='large'>
+      <Box align='center' p='3px'>
+        <Button 
+          component={Link} 
+          to='/gamemodes' 
+          variant='contained' 
+          size='large' 
+          sx={{boxShadow:'3px 2px 7px rgb(0, 0, 0, 0.5)'}}>
           <Typography fontWeight='bold' fontSize='24px'>
             let's play!
           </Typography>
