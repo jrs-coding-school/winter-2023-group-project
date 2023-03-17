@@ -18,26 +18,12 @@ function GetGameModes(){
   
   const gameModeTypes = ["Quick Play", "3 Strikes", "Fast 25"]
 
-  // SELECT SUBSTRING(COLUMN_TYPE,5)
-  // FROM information_schema.COLUMNS
-  // WHERE TABLE_SCHEMA='trivia_db' 
-  // AND TABLE_NAME='game'
-  // AND COLUMN_NAME='gameMode'  
-  
-  // useEffect(() => {
-  //   fetch('fetch to ')
-  //   .then(res => res.json())
-  //   .then(data => setData(data))
-  // }, [])
-
   return gameModeTypes
 }
 
 function UserProfile() {
   const [data, setData] = useState(null)
-  const { username } = useParams();
-
-  // Get User Profile
+  const { username } = useParams()
 
   useEffect(() => {
     getUserProfile(username)
