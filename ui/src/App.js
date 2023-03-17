@@ -4,6 +4,7 @@ import About from './views/About'
 import Home from './views/Home'
 import NotFound from './views/NotFound'
 import Layout from './layouts'
+import Leaderboard from './views/Leaderboard'
 import ThemeContextProvider from './context/themeContext'
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
             <Route index element={<Home/>}/>
             <Route path="/about" element={<About/>}/>
             <Route path="*" element={<NotFound/>}/>
+            <Route path="/leaderboard" element={<Leaderboard/>}/>
           </Route>
         </Routes>
       </ThemeContextProvider>
