@@ -5,7 +5,7 @@
 exports.up = function(knex) {
   return knex.schema.createTable('response', function(table) {
   
-    table.integer('response_id')
+    table.increments('response_id')
       .primary()
       .unsigned()
       .notNullable()

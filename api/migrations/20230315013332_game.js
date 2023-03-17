@@ -5,7 +5,7 @@
 exports.up = function(knex) {
   return knex.schema.createTable('game', function(table) {
   
-    table.integer('game_id')
+    table.increments('game_id')
       .primary()
       .unsigned()
       .notNullable()
