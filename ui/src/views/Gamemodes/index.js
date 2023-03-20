@@ -16,17 +16,19 @@ function Gamemodes() {
   const [errorMsg, setErrorMsg] = useState('')
 
   const handleStart = () => {
-
-    if (difficulty === null) {
-      return setErrorMsg("Please select your difficulty before starting.")
-    }
-    if (category === null) {
-      return setErrorMsg("Please select your category before starting.")
-    }
+    
     if (mode === null) {
       return setErrorMsg('Please select your game mode before starting.')
     }
 
+    if (category === null) {
+      return setErrorMsg("Please select your category before starting.")
+    }
+
+    if (difficulty === null) {
+      return setErrorMsg("Please select your difficulty before starting.")
+    }
+    
     // console.log(`mode: ${mode}`)
     // console.log(`category: ${category}`)
     // console.log(`difficulty: ${difficulty}`)
