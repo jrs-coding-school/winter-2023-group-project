@@ -57,7 +57,7 @@ function getComparator(order, orderBy) {
     : (a,b) => -difficultyComparator(a,b, orderBy)
     
   } else {
-    
+
     return order === "desc"
     ? (a,b) => descindingComparator(a,b, orderBy)
     : (a,b) => -descindingComparator(a,b, orderBy)
