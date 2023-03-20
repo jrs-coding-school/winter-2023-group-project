@@ -3,6 +3,7 @@ import { Fragment } from 'react'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Typography from '@mui/material/Typography'
+import Grid from '@mui/material/Grid'
 import { Box } from '@mui/system'
 import { Button } from '@mui/material'
 import './index.css'
@@ -15,193 +16,257 @@ function Gamemodes() {
   const [errorMsg, setErrorMsg] = useState('')
 
   const handleStart = () => {
-    
-    if (difficulty === null){
-      setErrorMsg("Please select your difficulty before starting.")
+
+    if (difficulty === null) {
+      return setErrorMsg("Please select your difficulty before starting.")
     }
-    if (category === null){
-      setErrorMsg("Please select your category before starting.")
+    if (category === null) {
+      return setErrorMsg("Please select your category before starting.")
     }
     if (mode === null) {
-      setErrorMsg('Please select your game mode before starting.')
+      return setErrorMsg('Please select your game mode before starting.')
     }
 
-    console.log(`mode: ${mode}`)
-    console.log(`category: ${category}`)
-    console.log(`difficulty: ${difficulty}`)
-    
+    // console.log(`mode: ${mode}`)
+    // console.log(`category: ${category}`)
+    // console.log(`difficulty: ${difficulty}`)
+
+    // INSERT GAME COMPONENT HERE
   }
 
   const handleSelectMode = (selected) => {
     setMode(selected)
-    if (mode === 'quick play' || mode === '3 strikes'|| mode === 'fast 25'){
+
+    if (mode === selected) {
       setMode(null)
     }
   }
 
   const handleSelectCategory = (selected) => {
     setCategory(selected)
-    if (category === 'arts & literature' || category === 'film & tv' || category === 'food & drink' || category === 'general knowledge' || category === 'geography' || category === 'history' || category === 'music' || category === 'science' || category === 'society & culture' || category === 'sport & leisure'){
+
+    if (category === selected) {
       setCategory(null)
     }
   }
 
-   const handleSelectDifficulty = (selected) => {
+  const handleSelectDifficulty = (selected) => {
     setDifficulty(selected)
-    if (difficulty === 'easy' || difficulty === 'medium' || difficulty === 'hard'){
+
+    if (difficulty === selected) {
       setDifficulty(null)
     }
   }
 
   return (
     <Fragment>
-      <Box className='container'>
+      <Grid
+        container
+        direction="column"
+        justifyContent="center"
+        alignItems="center"
+      >
 
-        <Box align='center' mt='15px'>
-          <Typography variant='h4' fontWeight='bold' align='center' mt='20px'>
-            GAME MODES
+        <Grid item mt='20px'>
+          <Grid
+            container
+            direction="column"
+            justifyContent="center"
+            alignItems="center"
+          >
+            <Typography variant='h4' fontWeight='bold' align='center'>
+              GAME MODES
+            </Typography>
+            
+            <Typography component={Link} to='/how-to-play' color='grey' className='link' mb='8px'>
+              Rules
+            </Typography>
+          </Grid>
+
+          <Grid
+            container
+            direction="row"
+            justifyContent="center"
+            alignItems="center"
+            rowSpacing={2}
+            columnSpacing={2}
+            style={{maxWidth: '900px'}}
+          >
+            <Grid item>
+              <Button variant='contained' onClick={() => handleSelectMode('quick-play')} color={mode === 'quick-play' ? "success" : "primary"}>
+                <Typography fontWeight='bold'>
+                  Quick Play
+                </Typography>
+              </Button>
+            </Grid>
+            <Grid item>
+              <Button variant='contained' onClick={() => handleSelectMode('3-strikes')} color={mode === '3-strikes' ? "success" : "primary"}>
+                <Typography fontWeight='bold'>
+                  3 Strikes
+                </Typography>
+              </Button>
+            </Grid>
+            <Grid item>
+              <Button variant='contained' onClick={() => handleSelectMode('fast-25')} color={mode === 'fast-25' ? "success" : "primary"}>
+                <Typography fontWeight='bold'>
+                  Fast 25
+                </Typography>
+              </Button>
+            </Grid>
+          </Grid>
+        </Grid>
+
+        <Grid item>
+          <Typography variant='h4' fontWeight='bold' align='center' mt='40px' mb='8px'>
+            CHOOSE YOUR CATEGORY
           </Typography>
-        
-          <Typography component={Link} to='/how-to-play' color='grey' className='link'>
-            Rules
+
+          <Grid
+            container
+            direction="row"
+            justifyContent="center"
+            alignItems="center"
+            rowSpacing={2}
+            columnSpacing={2}
+            style={{maxWidth: '950px'}}
+          >
+            <Grid item>
+              <Button variant='contained' onClick={() => handleSelectCategory('art')} color={category === 'art' ? "success" : "primary"}>
+                <Typography fontWeight='bold'>
+                  Arts & Literature
+                </Typography>
+              </Button>
+            </Grid>
+            <Grid item >
+              <Button variant='contained' onClick={() => handleSelectCategory('film')} color={category === 'film' ? "success" : "primary"}>
+                <Typography fontWeight='bold'>
+                  Film & TV
+                </Typography>
+              </Button>
+            </Grid>
+            <Grid item >
+              <Button variant='contained' onClick={() => handleSelectCategory('food')} color={category === 'food' ? "success" : "primary"}>
+                <Typography fontWeight='bold'>
+                  Food & Drink
+                </Typography>
+              </Button>
+            </Grid>
+            <Grid item >
+              <Button variant='contained' onClick={() => handleSelectCategory('gen-knowledge')} color={category === 'gen-knowledge' ? "success" : "primary"}>
+                <Typography fontWeight='bold'>
+                  General Knowledge
+                </Typography>
+              </Button>
+            </Grid>
+            <Grid item >
+              <Button variant='contained' onClick={() => handleSelectCategory('geography')} color={category === 'geography' ? "success" : "primary"}>
+                <Typography fontWeight='bold'>
+                  Geography
+                </Typography>
+              </Button>
+            </Grid>
+            <Grid item >
+              <Button variant='contained' onClick={() => handleSelectCategory('history')} color={category === 'history' ? "success" : "primary"}>
+                <Typography fontWeight='bold'>
+                  History
+                </Typography>
+              </Button>
+            </Grid>
+            <Grid item >
+              <Button variant='contained' onClick={() => handleSelectCategory('music')} color={category === 'music' ? "success" : "primary"}>
+                <Typography fontWeight='bold'>
+                  Music
+                </Typography>
+              </Button>
+            </Grid>
+            <Grid item >
+              <Button variant='contained' onClick={() => handleSelectCategory('science')} color={category === 'science' ? "success" : "primary"}>
+                <Typography fontWeight='bold'>
+                  Science
+                </Typography>
+              </Button>
+            </Grid>
+            <Grid item >
+              <Button variant='contained' onClick={() => handleSelectCategory('society')} color={category === 'society' ? "success" : "primary"}>
+                <Typography fontWeight='bold'>
+                  Society & Culture
+                </Typography>
+              </Button>
+            </Grid>
+            <Grid item >
+              <Button variant='contained' onClick={() => handleSelectCategory('sport')} color={category === 'sport' ? "success" : "primary"}>
+                <Typography fontWeight='bold'>
+                  Sport & Leisure
+                </Typography>
+              </Button>
+            </Grid>
+          </Grid>
+        </Grid>
+
+        <Grid item>
+          <Typography variant='h4' fontWeight='bold' align='center' mt='40px' mb='8px'>
+            CHOOSE YOUR DIFFICULTY
           </Typography>
-        </Box>
 
-        <Box className='modes-buttons-container' pt='15px'>
-        
-          <Button variant='contained' onClick={() => handleSelectMode('quick play')} color={mode === 'quick play' ? "success" : "primary"}>
-            <Typography className='button-text'>
-              Quick Play
-            </Typography>
-          </Button>
+          <Grid
+            container
+            direction="row"
+            justifyContent="center"
+            alignItems="center"
+            rowSpacing={2}
+            columnSpacing={2}
+            style={{maxWidth: '900px'}}
+          >
 
-          <Button variant='contained' onClick={() => handleSelectMode('3 strikes')} color={mode === '3 strikes' ? "success" : "primary"}>
-            <Typography className='button-text'>
-              3 Strikes
-            </Typography>
-          </Button>
+            <Grid item>
+              <Button variant='contained' onClick={() => handleSelectDifficulty('easy')} color={difficulty === 'easy' ? "success" : "primary"}>
+                <Typography fontWeight='bold'>
+                  EASY
+                </Typography>
+              </Button>
+            </Grid>
 
-          <Button variant='contained' onClick={() => handleSelectMode('fast 25')} color={mode === 'fast 25' ? "success" : "primary"}>
-            <Typography className='button-text'>
-              Fast 25
-            </Typography>
-          </Button>
-        
-        </Box>
+            <Grid item>
+            <Button variant='contained' onClick={() => handleSelectDifficulty('medium')} color={difficulty === 'medium' ? "success" : "primary"}>
+              <Typography fontWeight='bold'>
+                MEDIUM
+              </Typography>
+            </Button>
+            </Grid>
 
-        <Typography variant='h4' fontWeight='bold' align='center' mt='40px'>
-          CHOOSE YOUR CATEGORY
-        </Typography>
+            <Grid item>
+            <Button variant='contained' onClick={() => handleSelectDifficulty('hard')} color={difficulty === 'hard' ? "success" : "primary"}>
+              <Typography fontWeight='bold'>
+                HARD
+              </Typography>
+            </Button>
+            </Grid>
 
-        <Box className='category-buttons-container' pt='20px'>
-        
-          <Button variant='contained' onClick={() => handleSelectCategory('arts & literature')} color={category === 'arts & literature' ? "success" : "primary"}>
-            <Typography className='button-text'>
-              Arts & Literature
-            </Typography>
-          </Button>
+          </Grid>
 
-          <Button variant='contained'  onClick={() => handleSelectCategory('film & tv')} color={category === 'film & tv' ? "success" : "primary"}>
-            <Typography className='button-text'>
-              Film & TV
-            </Typography>
-          </Button>
+        </Grid>
 
-          <Button variant='contained' onClick={() => handleSelectCategory('food & drink')} color={category === 'food & drink' ? "success" : "primary"}>
-            <Typography className='button-text'>
-              Food & Drink
-            </Typography>
-          </Button>
+        <Grid align='center' mt='40px'>
 
-          <Button variant='contained' onClick={() => handleSelectCategory('general knowledge')} color={category === 'general knowledge' ? "success" : "primary"}>
-            <Typography className='button-text'>
-              General Knowledge
-            </Typography>
-          </Button>
+          <Typography color='red' fontSize='18px' mb='15px'>
+            {errorMsg}
+          </Typography>
 
-          <Button variant='contained' onClick={() => handleSelectCategory('geography')} color={category === 'geography' ? "success" : "primary"}>
-            <Typography className='button-text'>
-              Geography
-            </Typography>
-          </Button>
-
-          <Button variant='contained' onClick={() => handleSelectCategory('history')} color={category === 'history' ? "success" : "primary"}>
-            <Typography className='button-text'>
-              History
-            </Typography>
-          </Button>
-
-          <Button variant='contained' onClick={() => handleSelectCategory('music')} color={category === 'music' ? "success" : "primary"}>
-            <Typography className='button-text'>
-              Music
-            </Typography>
-          </Button>
-
-          <Button variant='contained' onClick={() => handleSelectCategory('science')} color={category === 'science' ? "success" : "primary"}>
-            <Typography className='button-text'>
-              Science
-            </Typography>
-          </Button>
-
-          <Button variant='contained' onClick={() => handleSelectCategory('society & culture')} color={category === 'society & culture' ? "success" : "primary"}>
-            <Typography className='button-text'>
-              Society & Culture
-            </Typography>
-          </Button>
-
-          <Button variant='contained' onClick={() => handleSelectCategory('sport & leisure')} color={category === 'sport & leisure' ? "success" : "primary"}>
-            <Typography className='button-text'>
-              Sport & Leisure
-            </Typography>
-          </Button>
-
-        </Box>
-
-        <Typography variant='h4' fontWeight='bold' align='center' mt='40px'>
-          CHOOSE YOUR DIFFICULTY
-        </Typography>
-
-        <Box className='difficulty-buttons-container' pt='20px'>
-        
-          <Button variant='contained' onClick={() => handleSelectDifficulty('easy')} color={difficulty === 'easy' ? "success" : "primary"}>
-            <Typography className='button-text'>
-              EASY
-            </Typography>
-          </Button>
-
-          <Button variant='contained' onClick={() => handleSelectDifficulty('medium')} color={difficulty === 'medium' ? "success" : "primary"}>
-            <Typography className='button-text'>
-              MEDIUM
-            </Typography>
-          </Button>
-
-          <Button variant='contained' onClick={() => handleSelectDifficulty('hard')} color={difficulty === 'hard' ? "success" : "primary"}>
-            <Typography className='button-text'>
-              HARD
-            </Typography>
-          </Button>
-        
-        </Box>
-
-        <Box align='center' mt='40px'>
-
-        <Typography color='red' fontSize='18px' mb='15px'>
-          {errorMsg}
-        </Typography>
-
-          <Button 
-            variant='contained' 
+          <Button
+            variant='contained'
             color='secondary'
             onClick={handleStart}
           >
+
             <Typography fontWeight='bold' fontSize='35px'>
               start game
             </Typography>
+            
           </Button>
-        
-        </Box>
 
-      </Box>
+        </Grid>
+
+      </Grid>
     </Fragment>
   )
 }
