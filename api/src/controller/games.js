@@ -3,7 +3,7 @@ const { showGamesByUser } = require('../service/games')
 exports.getGamesByUser= async (req, res) => {
   
   try {
-    console.log('in the games controller', req.params.username)
+   
     const games = await showGamesByUser(req.params.username)
     
     res.json(games)

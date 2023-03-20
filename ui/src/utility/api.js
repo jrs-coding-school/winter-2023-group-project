@@ -67,7 +67,7 @@ export const register = async(data) => {
 
 export const getUserProfile = async (username) => {
 
-  console.log(username)
+  console.log(`${baseUrl}/user/${username}`)
   const response = await fetch(`${baseUrl}/user/${username}`, {
     method: "GET",
   })

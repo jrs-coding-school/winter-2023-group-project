@@ -2,55 +2,14 @@ const knex = require('../knex')
 
 exports.showGamesByUser = async (username) => {
   
-  console.log('in the games service')
-  const userId =  await knex('user').where('username', username)
-  // const games = await knex('games').where('user_id', userId)
+  const userId = (await knex
+  .distinct()
+  .from('user')
+  .pluck('user_id')
+  .where ('username', username))[0]
+
+  const games = await knex('game').where('user_id', userId)
   
-  const games = [
-    {
-       "gameDate": "3/12/2023",
-       "duration": "3 minutes",
-       "score": 34,
-       "difficulty": "easy", 
-       "game_id": 100,
-       "gameMode": "Quick Play"
-     },
-   
-     {
-       "gameDate": "02/25/2022",
-       "duration": "1 minute",
-       "score": 79,
-       "difficulty": "easy", 
-       "game_id": 204,
-       "gameMode": "Quick Play"
-     },
-   
-     {
-       "gameDate": "3/12/2023",
-       "duration": "3 minutes",
-       "score": 34,
-       "difficulty": "easy",
-       "game_id": 309,
-       "gameMode": "Fast 25"
-     },
-   
-     {
-       "gameDate": "5/18/2022",
-       "duration": "2 minutes",
-       "score": 99,
-       "difficulty": "hard",
-       "game_id": 309,
-       "gameMode": "Fast 25"
-     },
-   
-     {
-       "gameDate": "5/18/2022",
-       "duration": "2 minutes",
-       "score": 73,
-       "difficulty": "medium",
-       "game_id": 309,
-       "gameMode": "3 Strikes"
-     }
-   ]
+  
 return games
 }

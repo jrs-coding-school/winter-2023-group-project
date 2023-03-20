@@ -14,20 +14,20 @@ export const handlers = [
     return res(ctx.json({username: "dantewanders"})) // respond using a mocked JSON body
   }),
 
-  rest.get(`${baseUrl}/user/:username`, (req, res, ctx) => { // capture "GET /greeting" requests
+  // rest.get(`${baseUrl}/user/:username`, (req, res, ctx) => { // capture "GET /greeting" requests
    
-    return res(ctx.json(getUserProfile)) // respond using a mocked JSON body
-  }),
-  
-  rest.get(`${baseUrl}/game/:username`, (req, res, ctx) => { // capture "GET /greeting" requests
-  
-    return res(ctx.json(getGameHistory)) // respond using a mocked JSON body
-  }),
+  //   return res(ctx.json(getUserProfile)) // respond using a mocked JSON body
+  // }),
 
-  rest.get(`${baseUrl}/stats/:username`, (req, res, ctx) => { // capture "GET /greeting" requests
+  // rest.get(`${baseUrl}/game/:username`, (req, res, ctx) => { // capture "GET /greeting" requests
   
-    return res(ctx.json(getGameStatistics)) // respond using a mocked JSON body
-  }),
+  //   return res(ctx.json(getGameHistory)) // respond using a mocked JSON body
+  // }),
+
+  // rest.get(`${baseUrl}/stats/:username`, (req, res, ctx) => { // capture "GET /greeting" requests
+  
+  //   return res(ctx.json(getGameStatistics)) // respond using a mocked JSON body
+  // }),
 
   // rest.get('/farewell', (req, res, ctx) => { // capture "GET /greeting" requests
   //   return res(ctx.json({farewell: 'goodbye there'})) // respond using a mocked JSON body

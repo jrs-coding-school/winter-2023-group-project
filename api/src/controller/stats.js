@@ -3,7 +3,7 @@ const { showStatsByUser } = require('../service/stats')
 exports.getStatsByUser= async (req, res) => {
   
   try {
-    console.log('in the stats controller', req.params.username)
+  
     const games = await showStatsByUser(req.params.username)
     
     res.json(games)
@@ -11,7 +11,7 @@ exports.getStatsByUser= async (req, res) => {
 
   } catch (error) {
 
-    console.error
+    console.log(error)
     res.status(500).send("Internal Server Error")
   }
 }
