@@ -6,8 +6,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { TablePagination, TableSortLabel } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Button, TablePagination, TableSortLabel } from '@mui/material';
 import { Link as RouterLink } from "react-router-dom";
 
 
@@ -31,10 +30,38 @@ function descindingComparator(a,b, orderBy) {
   return 0
 }
 
+function difficultyComparator(a,b, orderBy) {
+
+  const sortMap = {
+    'easiest': 0,
+    'easy': 1,
+    'medium': 2,
+    'hard': 3,
+    'hardest': 4,
+ }
+
+  if (sortMap[b[orderBy]] < sortMap[a[orderBy]]) {
+    return -1
+  }
+  if (sortMap[b[orderBy]] > sortMap[a[orderBy]]) {
+    return 1
+  }
+  return 0
+}
+
 function getComparator(order, orderBy) {
-  return order === "desc"
+  console.log("orderBy:", orderBy)
+  if (orderBy === 'difficulty') {
+    return order === "desc"
+    ? (a,b) => difficultyComparator(a,b, orderBy)
+    : (a,b) => -difficultyComparator(a,b, orderBy)
+    
+  } else {
+    
+    return order === "desc"
     ? (a,b) => descindingComparator(a,b, orderBy)
     : (a,b) => -descindingComparator(a,b, orderBy)
+  }
 }
 
 const sortedUserData = (rowArray, comparator) => {
@@ -51,12 +78,13 @@ const sortedUserData = (rowArray, comparator) => {
 const QuickPlayLeaderboard = function (props) {
 
   const [orderDirection, setOrderDirection] = useState('asc')
-  const [valueToOrderBy, setValueToOrderBy] = useState('score', 'time', 'difficulty')
+  const [valueToOrderBy, setValueToOrderBy] = useState('score')
   const [page, setPage] = useState(0)
   const [rowsPerPage, setRowsPerPage] = useState(5, 10, 20)
 
   const handleRequestSort = (event, property) => {
-    const isAscending =(valueToOrderBy === property && orderDirection === 'asc')
+    console.log('property:', property)
+    const isAscending = (valueToOrderBy === property && orderDirection === 'asc')
     setValueToOrderBy(property)
     setOrderDirection(isAscending ? 'desc' : 'asc')
   }
@@ -80,15 +108,15 @@ const QuickPlayLeaderboard = function (props) {
       
       <TableHead>
           <TableRow>
-            <TableCell align="center" colSpan={4}>
+            <TableCell  sx={{color: '#42a5f5'}} align="center" colSpan={4}>
                 <h2>Quick Pick</h2>
             </TableCell>
           </TableRow>
       </TableHead>
       <TableHead
-        valueToOrderBy={valueToOrderBy}
-        orderDirection={orderDirection}
-        onRequestSort={handleRequestSort}
+        // valueToOrderBy={valueToOrderBy}
+        // orderDirection={orderDirection}
+        // onRequestSort={handleRequestSort}
       >
         <TableRow>
           <TableCell key="username">
@@ -107,12 +135,12 @@ const QuickPlayLeaderboard = function (props) {
           </TableCell>
           
           <TableCell 
-            key="time" 
+            key="duration" 
             align="right">
             <TableSortLabel 
-              active={valueToOrderBy === "time"}
-              direction={valueToOrderBy === "time" ? orderDirection: 'asc'}
-              onClick={createSortHandler("time")}>
+              active={valueToOrderBy === "duration"}
+              direction={valueToOrderBy === "duration" ? orderDirection: 'asc'}
+              onClick={createSortHandler("duration")}>
               <h4>Time</h4>
             </TableSortLabel>
           </TableCell>
@@ -138,11 +166,11 @@ const QuickPlayLeaderboard = function (props) {
           <TableRow key={index}
             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
             <TableCell component="th" scope="user">
-              <Link
+              <Button
                 component={RouterLink} 
                 to="/user/:username">
                   {user.user_id}
-              </Link>
+              </Button>
             </TableCell>
             <TableCell align="right">{user.score}</TableCell>
             <TableCell align="right">{user.duration}</TableCell>
