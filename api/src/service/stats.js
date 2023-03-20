@@ -2,6 +2,8 @@ const knex = require('../knex')
 
 exports.showStatsByUser = async (username) => {
   
+  const resultData = {}
+
   const userId = (await knex
     .distinct()
     .from('user')
@@ -17,7 +19,9 @@ exports.showStatsByUser = async (username) => {
   //Array.length = gamesPlayed
 
   //Loop through returned game_id array and Select from response where response.game_id = game.game_id and
-  
+  let totalResponses = 0
+  let correctResponses = 0
+
 
   const result = await Promise.all(games.map(async (game)=> {
     //get response where game_id = game_id
@@ -26,7 +30,10 @@ exports.showStatsByUser = async (username) => {
       
       //Count the total number of responses in all games
       game.responses = await Promise.all(game.responses.map(async (response)=> {
-       
+        totalResponses = totalResponses + 1
+        if (response.isCorrect) {
+          correctResponses = correctResponses + 1
+        }
         //get difficulty and category from question where question_id = response.question_id
         response.question = await knex('question').select('category', 'difficulty').where('question_id', response.question_id).first()
         return response
@@ -38,37 +45,26 @@ exports.showStatsByUser = async (username) => {
   
   //Number of games played
   const gamesPlayed = result.length
+
+  //Percentage of correct answers
+  resultData.correctAnswerPct = (correctResponses / totalResponses) * 100
   
  
-  let numberResponses = 0
-  let gameModes = []
-
-  for (let i = 0; i < result.length; i++) {
-     //Number of responses in all games
-    numberResponses = result[i].responses.length + numberResponses
-    
-    //Get all of the game modes into an array by game
-    // gameModes[i] = result[i].gameMode
-    
-
-    // for (let j = 0; i < result[i].responses.length; j++) {
-    //   if (beenResponseLoop) {j = 0}
-    //   console.log('response length', result[i].responses.length)
-    //   console.log('J is', j)
-    //   console.log('isCorrect', result[i].responses[j].isCorrect)
-      
-      
-    // }
-  }
-  console.log('number of responses', numberResponses)
+  console.log('number of responses', totalResponses)
+  console.log('isCorrect', correctResponses)
   // console.log(gameModes[1])
   console.log('number of games played', gamesPlayed)
+
+  resultData.gamesPlayed = gamesPlayed
+  
+ 
  
   
 
 
 
-  return gamesPlayed
+
+  return resultData
 
 
   //isCorrect = true
