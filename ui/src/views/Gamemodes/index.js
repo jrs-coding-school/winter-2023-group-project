@@ -1,6 +1,7 @@
 import React from 'react'
 import { Fragment } from 'react'
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import Typography from '@mui/material/Typography'
 import { Box } from '@mui/system'
 import { Button } from '@mui/material'
@@ -24,8 +25,6 @@ function Gamemodes() {
       setErrorMsg('Please select your mode before starting.')
     }
 
-    setErrorMsg('')
-    
     console.log(`GAME TYPE: mode: ${mode}, category: ${category}, difficulty: ${difficulty}`)
   }
 
@@ -33,9 +32,15 @@ function Gamemodes() {
     <Fragment>
       <Box className='container'>
 
-        <Typography variant='h4' fontWeight='bold' align='center' mt='20px'>
-          GAME MODES
-        </Typography>
+        <Box align='center' mt='15px'>
+          <Typography variant='h4' fontWeight='bold' align='center' mt='20px'>
+            GAME MODES
+          </Typography>
+        
+          <Typography component={Link} to='/how-to-play' color='grey' className='link'>
+            Rules
+          </Typography>
+        </Box>
 
         <Box className='modes-buttons-container' pt='15px'>
         
@@ -59,7 +64,7 @@ function Gamemodes() {
         
         </Box>
 
-        <Typography variant='h4' fontWeight='bold' align='center' mt='50px'>
+        <Typography variant='h4' fontWeight='bold' align='center' mt='40px'>
           CHOOSE YOUR CATEGORY
         </Typography>
 
@@ -127,7 +132,7 @@ function Gamemodes() {
 
         </Box>
 
-        <Typography variant='h4' fontWeight='bold' align='center' mt='50px'>
+        <Typography variant='h4' fontWeight='bold' align='center' mt='40px'>
           CHOOSE YOUR DIFFICULTY
         </Typography>
 
@@ -167,7 +172,8 @@ function Gamemodes() {
             <Typography fontWeight='bold' fontSize='35px'>
               start game
             </Typography>
-         </Button>
+          </Button>
+        
         </Box>
 
       </Box>
