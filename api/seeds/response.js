@@ -20,7 +20,7 @@ exports.seed = async function(knex) {
       game_id: 6,
       question_id: '622a1c347cc59eab6f94fba6',
       isCorrect: false
-    }
+    },
 
     {
       game_id: 16,
