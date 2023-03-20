@@ -6,7 +6,7 @@ import Layout from './layouts'
 import ThemeContextProvider from './context/themeContext'
 import Login from './views/Login'
 import RegisterForm from './views/Register'
-import Account from './views/Account'
+import Settings from './views/Settings'
 
 function App() {
   return (
@@ -17,6 +17,7 @@ function App() {
             <Route index element={<Home/>}/>
             <Route path="/login" element={<Login/>}/>
             <Route path="*" element={<NotFound/>}/>
+            <Route path="/Settings" element={<Settings/>}/>
           </Route>
         </Routes>
       </ThemeContextProvider>
