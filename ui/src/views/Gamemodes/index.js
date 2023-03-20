@@ -15,6 +15,7 @@ function Gamemodes() {
   const [errorMsg, setErrorMsg] = useState('')
 
   const handleStart = () => {
+    
     if (difficulty === null){
       setErrorMsg("Please select your difficulty before starting.")
     }
@@ -22,10 +23,34 @@ function Gamemodes() {
       setErrorMsg("Please select your category before starting.")
     }
     if (mode === null) {
-      setErrorMsg('Please select your mode before starting.')
+      setErrorMsg('Please select your game mode before starting.')
     }
 
-    console.log(`GAME TYPE: mode: ${mode}, category: ${category}, difficulty: ${difficulty}`)
+    console.log(`mode: ${mode}`)
+    console.log(`category: ${category}`)
+    console.log(`difficulty: ${difficulty}`)
+    
+  }
+
+  const handleSelectMode = (selected) => {
+    setMode(selected)
+    if (mode === 'quick play' || mode === '3 strikes'|| mode === 'fast 25'){
+      setMode(null)
+    }
+  }
+
+  const handleSelectCategory = (selected) => {
+    setCategory(selected)
+    if (category === 'arts & literature' || category === 'film & tv' || category === 'food & drink' || category === 'general knowledge' || category === 'geography' || category === 'history' || category === 'music' || category === 'science' || category === 'society & culture' || category === 'sport & leisure'){
+      setCategory(null)
+    }
+  }
+
+   const handleSelectDifficulty = (selected) => {
+    setDifficulty(selected)
+    if (difficulty === 'easy' || difficulty === 'medium' || difficulty === 'hard'){
+      setDifficulty(null)
+    }
   }
 
   return (
@@ -44,19 +69,19 @@ function Gamemodes() {
 
         <Box className='modes-buttons-container' pt='15px'>
         
-          <Button variant='contained' onClick={() => setMode('quick play')} color={mode === 'quick play' ? "success" : "primary"}>
+          <Button variant='contained' onClick={() => handleSelectMode('quick play')} color={mode === 'quick play' ? "success" : "primary"}>
             <Typography className='button-text'>
               Quick Play
             </Typography>
           </Button>
 
-          <Button variant='contained' onClick={() => setMode('3 strikes')} color={mode === '3 strikes' ? "success" : "primary"}>
+          <Button variant='contained' onClick={() => handleSelectMode('3 strikes')} color={mode === '3 strikes' ? "success" : "primary"}>
             <Typography className='button-text'>
               3 Strikes
             </Typography>
           </Button>
 
-          <Button variant='contained' onClick={() => setMode('fast 25')} color={mode === 'fast 25' ? "success" : "primary"}>
+          <Button variant='contained' onClick={() => handleSelectMode('fast 25')} color={mode === 'fast 25' ? "success" : "primary"}>
             <Typography className='button-text'>
               Fast 25
             </Typography>
@@ -70,61 +95,61 @@ function Gamemodes() {
 
         <Box className='category-buttons-container' pt='20px'>
         
-          <Button variant='contained' onClick={() => setCategory('arts & literature')} color={category === 'arts & literature' ? "success" : "primary"}>
+          <Button variant='contained' onClick={() => handleSelectCategory('arts & literature')} color={category === 'arts & literature' ? "success" : "primary"}>
             <Typography className='button-text'>
               Arts & Literature
             </Typography>
           </Button>
 
-          <Button variant='contained'  onClick={() => setCategory('film & tv')} color={category === 'film & tv' ? "success" : "primary"}>
+          <Button variant='contained'  onClick={() => handleSelectCategory('film & tv')} color={category === 'film & tv' ? "success" : "primary"}>
             <Typography className='button-text'>
               Film & TV
             </Typography>
           </Button>
 
-          <Button variant='contained' onClick={() => setCategory('food & drink')} color={category === 'food & drink' ? "success" : "primary"}>
+          <Button variant='contained' onClick={() => handleSelectCategory('food & drink')} color={category === 'food & drink' ? "success" : "primary"}>
             <Typography className='button-text'>
               Food & Drink
             </Typography>
           </Button>
 
-          <Button variant='contained' onClick={() => setCategory('general knowledge')} color={category === 'general knowledge' ? "success" : "primary"}>
+          <Button variant='contained' onClick={() => handleSelectCategory('general knowledge')} color={category === 'general knowledge' ? "success" : "primary"}>
             <Typography className='button-text'>
               General Knowledge
             </Typography>
           </Button>
 
-          <Button variant='contained' onClick={() => setCategory('geography')} color={category === 'geography' ? "success" : "primary"}>
+          <Button variant='contained' onClick={() => handleSelectCategory('geography')} color={category === 'geography' ? "success" : "primary"}>
             <Typography className='button-text'>
               Geography
             </Typography>
           </Button>
 
-          <Button variant='contained' onClick={() => setCategory('history')} color={category === 'history' ? "success" : "primary"}>
+          <Button variant='contained' onClick={() => handleSelectCategory('history')} color={category === 'history' ? "success" : "primary"}>
             <Typography className='button-text'>
               History
             </Typography>
           </Button>
 
-          <Button variant='contained' onClick={() => setCategory('music')} color={category === 'music' ? "success" : "primary"}>
+          <Button variant='contained' onClick={() => handleSelectCategory('music')} color={category === 'music' ? "success" : "primary"}>
             <Typography className='button-text'>
               Music
             </Typography>
           </Button>
 
-          <Button variant='contained' onClick={() => setCategory('science')} color={category === 'science' ? "success" : "primary"}>
+          <Button variant='contained' onClick={() => handleSelectCategory('science')} color={category === 'science' ? "success" : "primary"}>
             <Typography className='button-text'>
               Science
             </Typography>
           </Button>
 
-          <Button variant='contained' onClick={() => setCategory('society & culture')} color={category === 'society & culture' ? "success" : "primary"}>
+          <Button variant='contained' onClick={() => handleSelectCategory('society & culture')} color={category === 'society & culture' ? "success" : "primary"}>
             <Typography className='button-text'>
               Society & Culture
             </Typography>
           </Button>
 
-          <Button variant='contained' onClick={() => setCategory('sport & leisure')} color={category === 'sport & leisure' ? "success" : "primary"}>
+          <Button variant='contained' onClick={() => handleSelectCategory('sport & leisure')} color={category === 'sport & leisure' ? "success" : "primary"}>
             <Typography className='button-text'>
               Sport & Leisure
             </Typography>
@@ -138,19 +163,19 @@ function Gamemodes() {
 
         <Box className='difficulty-buttons-container' pt='20px'>
         
-          <Button variant='contained' onClick={() => setDifficulty('easy')} color={difficulty === 'easy' ? "success" : "primary"}>
+          <Button variant='contained' onClick={() => handleSelectDifficulty('easy')} color={difficulty === 'easy' ? "success" : "primary"}>
             <Typography className='button-text'>
               EASY
             </Typography>
           </Button>
 
-          <Button variant='contained' onClick={() => setDifficulty('medium')} color={difficulty === 'medium' ? "success" : "primary"}>
+          <Button variant='contained' onClick={() => handleSelectDifficulty('medium')} color={difficulty === 'medium' ? "success" : "primary"}>
             <Typography className='button-text'>
               MEDIUM
             </Typography>
           </Button>
 
-          <Button variant='contained' onClick={() => setDifficulty('hard')} color={difficulty === 'hard' ? "success" : "primary"}>
+          <Button variant='contained' onClick={() => handleSelectDifficulty('hard')} color={difficulty === 'hard' ? "success" : "primary"}>
             <Typography className='button-text'>
               HARD
             </Typography>
