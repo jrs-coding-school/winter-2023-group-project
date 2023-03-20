@@ -8,9 +8,26 @@ import './index.css'
 
 function Gamemodes() {
 
-  const [mode, setMode] = useState(false)
-  const [category, setCategory] = useState(false)
-  const [difficulty, setDifficulty] = useState(false)
+  const [mode, setMode] = useState(null)
+  const [category, setCategory] = useState(null)
+  const [difficulty, setDifficulty] = useState(null)
+  const [errorMsg, setErrorMsg] = useState('')
+
+  const handleStart = () => {
+    if (difficulty === null){
+      setErrorMsg("Please select your difficulty before starting.")
+    }
+    if (category === null){
+      setErrorMsg("Please select your category before starting.")
+    }
+    if (mode === null) {
+      setErrorMsg('Please select your mode before starting.')
+    }
+
+    setErrorMsg('')
+    
+    console.log(`GAME TYPE: mode: ${mode}, category: ${category}, difficulty: ${difficulty}`)
+  }
 
   return (
     <Fragment>
@@ -48,25 +65,25 @@ function Gamemodes() {
 
         <Box className='category-buttons-container' pt='20px'>
         
-          <Button variant='contained' onClick={() => setCategory('arts')} color={category === 'arts' ? "success" : "primary"}>
+          <Button variant='contained' onClick={() => setCategory('arts & literature')} color={category === 'arts & literature' ? "success" : "primary"}>
             <Typography className='button-text'>
               Arts & Literature
             </Typography>
           </Button>
 
-          <Button variant='contained'  onClick={() => setCategory('film')} color={category === 'film' ? "success" : "primary"}>
+          <Button variant='contained'  onClick={() => setCategory('film & tv')} color={category === 'film & tv' ? "success" : "primary"}>
             <Typography className='button-text'>
               Film & TV
             </Typography>
           </Button>
 
-          <Button variant='contained' onClick={() => setCategory('food')} color={category === 'food' ? "success" : "primary"}>
+          <Button variant='contained' onClick={() => setCategory('food & drink')} color={category === 'food & drink' ? "success" : "primary"}>
             <Typography className='button-text'>
               Food & Drink
             </Typography>
           </Button>
 
-          <Button variant='contained' onClick={() => setCategory('general')} color={category === 'general' ? "success" : "primary"}>
+          <Button variant='contained' onClick={() => setCategory('general knowledge')} color={category === 'general knowledge' ? "success" : "primary"}>
             <Typography className='button-text'>
               General Knowledge
             </Typography>
@@ -96,13 +113,13 @@ function Gamemodes() {
             </Typography>
           </Button>
 
-          <Button variant='contained' onClick={() => setCategory('society')} color={category === 'society' ? "success" : "primary"}>
+          <Button variant='contained' onClick={() => setCategory('society & culture')} color={category === 'society & culture' ? "success" : "primary"}>
             <Typography className='button-text'>
               Society & Culture
             </Typography>
           </Button>
 
-          <Button variant='contained' onClick={() => setCategory('sport')} color={category === 'sport' ? "success" : "primary"}>
+          <Button variant='contained' onClick={() => setCategory('sport & leisure')} color={category === 'sport & leisure' ? "success" : "primary"}>
             <Typography className='button-text'>
               Sport & Leisure
             </Typography>
@@ -134,6 +151,23 @@ function Gamemodes() {
             </Typography>
           </Button>
         
+        </Box>
+
+        <Box align='center' mt='40px'>
+
+        <Typography color='red' fontSize='18px' mb='15px'>
+          {errorMsg}
+        </Typography>
+
+          <Button 
+            variant='contained' 
+            color='secondary'
+            onClick={handleStart}
+          >
+            <Typography fontWeight='bold' fontSize='35px'>
+              start game
+            </Typography>
+         </Button>
         </Box>
 
       </Box>
