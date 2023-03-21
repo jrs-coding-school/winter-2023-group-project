@@ -1,9 +1,9 @@
-const { getGamesByUser } = require('../controller/games')
+const { getGamesByUsername } = require('../controller/games')
 
 
 const games = (app) => {
 
-  app.get('/game/:username', getGamesByUser)
+  app.get('/game/:username', getGamesByUsername)
 
 }
 

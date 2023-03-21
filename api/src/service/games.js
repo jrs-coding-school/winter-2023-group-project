@@ -1,6 +1,6 @@
 const knex = require('../knex')
 
-exports.showGamesByUser = async (username) => {
+exports.showGamesByUsername = async (username) => {
   
   const userId = (await knex
   .distinct()

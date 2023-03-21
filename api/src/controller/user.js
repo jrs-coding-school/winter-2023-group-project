@@ -1,6 +1,6 @@
 const { showUserByUsername } = require('../service/user')
 
-exports.getUserByName= async (req, res) => {
+exports.getUserByUsername= async (req, res) => {
   
   try {
 

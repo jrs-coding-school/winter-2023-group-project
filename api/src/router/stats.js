@@ -1,9 +1,9 @@
-const { getStatsByUser } = require('../controller/stats')
+const { getStatsByUsername } = require('../controller/stats')
 
 
 const stats = (app) => {
 
-  app.get('/stats/:username', getStatsByUser)
+  app.get('/stats/:username', getStatsByUsername)
 
 }
 

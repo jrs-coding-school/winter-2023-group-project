@@ -1,10 +1,10 @@
-const { showGamesByUser } = require('../service/games')
+const { showGamesByUsername } = require('../service/games')
 
-exports.getGamesByUser= async (req, res) => {
+exports.getGamesByUsername = async (req, res) => {
   
   try {
    
-    const games = await showGamesByUser(req.params.username)
+    const games = await showGamesByUsername(req.params.username)
     
     res.json(games)
     

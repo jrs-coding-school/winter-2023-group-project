@@ -1,10 +1,10 @@
-const { showStatsByUser } = require('../service/stats')
+const { showStatsByUsername } = require('../service/stats')
 
-exports.getStatsByUser= async (req, res) => {
+exports.getStatsByUsername = async (req, res) => {
   
   try {
   
-    const games = await showStatsByUser(req.params.username)
+    const games = await showStatsByUsername(req.params.username)
     
     res.json(games)
     
