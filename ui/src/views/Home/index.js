@@ -9,7 +9,7 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 
-const Item = (props) => (
+const Item = (props) => (//this is the component that is used to create a grid item
   <Grid item xs={props.xs}>
     {props.children}
   </Grid>
@@ -21,8 +21,8 @@ function Home(props) {
         <Grid item xs={8}>
           <Item>
             <Typography variant="h1" component="div" gutterBottom />
-            <Link to="/GameMode">
-              <Button variant="contained">Quick Play</Button>
+            <Link to="/GameModes">
+              <Button variant="contained">Lets Play</Button>
             </Link>
           </Item>
         </Grid>
@@ -85,7 +85,7 @@ function Home(props) {
             <Button size="small">Learn More</Button>
           </CardActions>
         </Card>
-        <Link to="/GameMode">
+        <Link to="/GameModes">
           <Button variant="contained">Quick Play</Button>
         </Link>
       </Box>
