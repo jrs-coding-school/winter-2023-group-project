@@ -21,7 +21,6 @@ exports.authenticate = (req, res, next) => {
 
     // Add the user ID to the request object
     req.userId = decoded.id
-    console.log(decoded)
 
     next()
   } catch (err) {
