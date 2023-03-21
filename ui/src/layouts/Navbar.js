@@ -16,9 +16,6 @@ import { Link } from 'react-router-dom';
 import {isUserLoggedIn, getToken} from '../utility/utils'
 import {getUser} from '../utility/api'
 
-
-
-
 function Navbar() {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
@@ -72,7 +69,7 @@ function Navbar() {
   const pages = [
     {
       label: 'Game Mode',
-      path: '/gamemode'},
+      path: '/gamemodes'},
     {
       label: 'LeaderBoard',
       path: '/leaderboard'},

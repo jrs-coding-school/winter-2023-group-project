@@ -81,10 +81,6 @@ export const getUserProfile = async (username) => {
   return responseData
 }
 
-
-
-
-
 export const getUser = async(token) => {
 
   const response = await fetch(`${baseUrl}/user/token`, {
@@ -130,5 +126,24 @@ export const getGameStatistics = async (username) => {
     throw new Error(`Status Code: ${response?.status} - ${responseData?.message}`)
   }
 
+  return responseData
+}
+export const updatePassword = async(token, data) => {
+
+  const response = await fetch(`${baseUrl}/auth/updatePassword`, {
+    method: "post", 
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    },
+    body: JSON.stringify(data),
+  })
+
+  const responseData = await response.json()
+
+  if (!response.ok) {
+    throw new Error(`Status Code: ${response?.status} - ${responseData?.message}`)
+  }
+  
   return responseData
 }
