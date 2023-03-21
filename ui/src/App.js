@@ -5,6 +5,7 @@ import NotFound from './views/NotFound'
 import Layout from './layouts'
 import ThemeContextProvider from './context/themeContext'
 import Login from './views/Login'
+import Logout from './views/Logout'
 import RegisterForm from './views/Register'
 import UserProfile from './views/UserProfile'
 import Gamemodes from './views/Gamemodes'
@@ -20,11 +21,12 @@ function App() {
             <Route index element={<Home/>}/>
             <Route path="/user/:username" element={<UserProfile/>}/>
             <Route path="/login" element={<Login/>}/>
-            <Route path="*" element={<NotFound/>}/>
+            <Route path="/user/logout" element={<Logout/>}/>
             <Route path="/register" element={<RegisterForm/>}/>
             <Route path="/gamemodes" element={<Gamemodes/>}/>
             <Route path="/user/settings" element={<Settings/>}/>
             <Route path="/how-to-play" element={<HowToPlay/>}/>
+            <Route path="*" element={<NotFound/>}/>
           </Route>
         </Routes>
       </ThemeContextProvider>

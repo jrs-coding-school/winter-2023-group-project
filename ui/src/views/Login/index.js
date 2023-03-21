@@ -29,9 +29,9 @@ function LoginForm() {
 
       // console.log('token value:', tokenValue.token)
 
-      await setToken(tokenValue.token)
+      setToken(tokenValue.token)
 
-      await routeToHome()
+      routeToHome()
       
     } catch (error) {
       console.error(error)
@@ -39,11 +39,11 @@ function LoginForm() {
     }
   }
 
-  let navigate = useNavigate()
+  const navigate = useNavigate()
 
   const routeToHome = () => {
-    let path = '/'
-    navigate(path)
+    navigate('/')
+    window.location.reload()
   }
 
   return (
