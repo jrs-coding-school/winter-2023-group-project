@@ -1,6 +1,6 @@
 const knex = require('../knex')
 
-exports.showStatsByUser = async (username) => {
+exports.showStatsByUsername = async (username) => {
   
   const resultData = {}
 
@@ -98,19 +98,7 @@ exports.showStatsByUser = async (username) => {
     resultData.bestCategory = res
 }
  
-  
-
-  
-  
- 
- 
-  
-
-
-
-
-  return resultData
-
+return resultData
 
   //isCorrect = true
   //correctAnswerPct = count of responses and multiply by .isCorrect 
