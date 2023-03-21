@@ -17,9 +17,9 @@ exports.createUser = async (userData) => {
 
   // Get the newly created user
   const user = await knex('user').select('*').where('user_id', result[0])
-
   return user
 }
+
 
 exports.showUserByUsername = async (username) => {
   // Find the first user in the database with the username
@@ -30,4 +30,14 @@ return user
 exports.showUserById = async (id) => {
   const user = await knex('user').where('user_id', id).first()
   return user
+}
+
+//create a service to update the user's password
+exports.updatePassword = async (id, password) => {
+  const hash = await bcrypt.hash(password, 10)
+  const result = await knex('user').where('user_id', id).update({
+    password: hash
+  })
+console.log (result)
+return result
 }
