@@ -4,7 +4,7 @@ import { rest } from 'msw'
 import getUserProfile from './data/getUserProfile.json'
 import getGameHistory from './data/getGameHistory.json'
 import getGameStatistics from './data/getGameStatistics.json'
-
+import getQuestion from './data/getQuestion.json'
 // Set URL to mock
 const baseUrl = process.env.REACT_APP_API_URL || 'http://localhost:9000'
 
@@ -12,6 +12,10 @@ export const handlers = [
   rest.get(`${baseUrl}/user/token`, (req, res, ctx) => { // capture "GET /greeting" requests
    
     return res(ctx.json({username: "dantewanders"})) // respond using a mocked JSON body
+  }),
+  rest.get(`${baseUrl}/trivia-questions`, (req, res, ctx) => { // capture "GET /greeting" requests
+    const result = getQuestion[Math.floor(Math.random()*getQuestion.length)]
+    return res(ctx.json(result)) // respond using a mocked JSON body
   }),
 
   // rest.get(`${baseUrl}/user/:username`, (req, res, ctx) => { // capture "GET /greeting" requests

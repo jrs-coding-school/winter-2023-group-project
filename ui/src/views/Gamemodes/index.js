@@ -7,6 +7,7 @@ import Grid from '@mui/material/Grid'
 import { Box } from '@mui/system'
 import { Button } from '@mui/material'
 import './index.css'
+import Game from './Game'
 
 function Gamemodes() {
 
@@ -14,18 +15,19 @@ function Gamemodes() {
   const [category, setCategory] = useState(null)
   const [difficulty, setDifficulty] = useState(null)
   const [errorMsg, setErrorMsg] = useState('')
+  const [isPlaying, setIsPlaying] = useState(false)
 
   const handleStart = () => {
     
-    if (mode === null) {
+    if (!mode) {
       return setErrorMsg('Please select your game mode before starting.')
     }
 
-    if (category === null) {
+    if (!category) {
       return setErrorMsg("Please select your category before starting.")
     }
 
-    if (difficulty === null) {
+    if (!difficulty) {
       return setErrorMsg("Please select your difficulty before starting.")
     }
     
@@ -33,7 +35,7 @@ function Gamemodes() {
     // console.log(`category: ${category}`)
     // console.log(`difficulty: ${difficulty}`)
 
-    // INSERT GAME COMPONENT HERE
+    setIsPlaying(true)
   }
 
   const handleSelectMode = (selected) => {
@@ -58,6 +60,16 @@ function Gamemodes() {
     if (difficulty === selected) {
       setDifficulty(null)
     }
+  }
+  
+  if (isPlaying) {
+    return (
+      <Game 
+        mode={mode} 
+        category={category} 
+        difficulty={difficulty}
+      />
+    )
   }
 
   return (
