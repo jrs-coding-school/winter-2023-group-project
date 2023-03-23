@@ -128,9 +128,46 @@ export const getGameStatistics = async (username) => {
 
   return responseData
 }
+
+export const getQuestion = async (difficulty, category) => {
+
+  const response = await fetch(`${baseUrl}/questions/random?difficulty=${encodeURIComponent(difficulty)}&category=${encodeURIComponent(category)}`, { // using a query string
+    method: "GET",
+    
+  })
+
+  const responseData = await response.json()
+
+  if (!response.ok) {
+    throw new Error(`Status Code: ${response?.status} - ${responseData?.message}`)
+  }
+
+  return responseData
+}
+
 export const updatePassword = async(token, data) => {
 
   const response = await fetch(`${baseUrl}/auth/updatePassword`, {
+    method: "post", 
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    },
+    body: JSON.stringify(data),
+  })
+
+  const responseData = await response.json()
+
+  if (!response.ok) {
+    throw new Error(`Status Code: ${response?.status} - ${responseData?.message}`)
+  }
+  
+  return responseData
+}
+
+export const sendGameResults = async(token, data) => {
+
+  const response = await fetch(`${baseUrl}/game/results`, {
     method: "post", 
     headers: {
       'Content-Type': 'application/json',
