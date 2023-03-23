@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -9,17 +9,19 @@ import Paper from '@mui/material/Paper';
 import { Button, TablePagination, TableSortLabel } from '@mui/material';
 import { Link as RouterLink } from "react-router-dom";
 import '../../mocks/data/leaderboard.json'
+import { getLeaderboard } from '../../utility/api';
 
 
-const userData = [
-  { user_id: 'Bob', score: 159, duration: 6.01, difficulty: 'easy' },
-  { user_id: 'Tom', score: 7, duration: 3.43, difficulty: 'hard' },
-  { user_id: 'Nancy', score: 654, duration: 4.13, difficulty: 'medium' },
-  { user_id: 'Lisa', score: 54, duration: 2.24, difficulty: "easy" },
-  { user_id: 'Mike', score: 218, duration: 7.18, difficulty: "medium" },
-  { user_id: 'Shelby', score: 87, duration: 3.56, difficulty: "hard" },
-  { user_id: 'Frank', score: 356, duration: 4.02, difficulty: "meduim" },
-];
+// const userData = [
+//   { user_id: 'Bob', score: 159, duration: 6.01, difficulty: 'easy' },
+//   { user_id: 'Tom', score: 7, duration: 3.43, difficulty: 'hard' },
+//   { user_id: 'Nancy', score: 654, duration: 4.13, difficulty: 'medium' },
+//   { user_id: 'Lisa', score: 54, duration: 2.24, difficulty: "easy" },
+//   { user_id: 'Mike', score: 218, duration: 7.18, difficulty: "medium" },
+//   { user_id: 'Shelby', score: 87, duration: 3.56, difficulty: "hard" },
+//   { user_id: 'Frank', score: 356, duration: 4.02, difficulty: "meduim" },
+// ];
+
 
 function descindingComparator(a,b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -82,7 +84,15 @@ const QuickPlayLeaderboard = function (props) {
   const [valueToOrderBy, setValueToOrderBy] = useState('score')
   const [page, setPage] = useState(0)
   const [rowsPerPage, setRowsPerPage] = useState(5, 10, 20)
+  const [data, setData] = useState(null)
 
+  console.log(data)
+
+  useEffect(() => {
+    getLeaderboard()
+      .then(data => setData(data))
+      .catch((error) => console.log(error))
+  }, [])
 
   const handleRequestSort = (event, property) => {
     console.log('property:', property)
@@ -102,6 +112,12 @@ const QuickPlayLeaderboard = function (props) {
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(parseInt(event.target.value), 10)
     setPage(0)
+  }
+
+  //conditional rendering guard clauses
+    //when cant read map even with returning an array need to return a div to give time to render
+  if (!data){
+    return <div>loading...</div>
   }
 
   return (
@@ -162,7 +178,7 @@ const QuickPlayLeaderboard = function (props) {
       
       <TableBody>
         {
-        sortedUserData(userData, getComparator(orderDirection, valueToOrderBy))
+        sortedUserData(data, getComparator(orderDirection, valueToOrderBy))
         .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
         .map((user, index) => (
           <TableRow key={index}
@@ -184,7 +200,7 @@ const QuickPlayLeaderboard = function (props) {
     <TablePagination 
       rowsPerPageOptions={[5, 10, 20]}
       component="div"
-      count={userData.length}
+      count={data.length}
       rowsPerPage={rowsPerPage}
       page={page}
       onPageChange={handleChangePage}
