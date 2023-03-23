@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import { useEffect } from 'react';
 import Box from '@mui/material/Box';
 import LinearProgress from '@mui/material/LinearProgress';
 
@@ -35,8 +35,12 @@ export default function Timer(props) {
   }, []);
 
   return (
-    <Box sx={{ width: '100%' }}>
-      <LinearProgress variant="determinate" value={progress} />
+    <Box>
+      <LinearProgress 
+        variant="determinate" 
+        value={progress} 
+        color='secondary' 
+        sx={{ height: '10px',  width: '500px', textAlign: 'center' }}/>
     </Box>
   );
 }
