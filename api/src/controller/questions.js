@@ -15,7 +15,6 @@ exports.getRandomQuestion = async (req, res) => {
     
     res.json(question)
     
-
   } catch (error) {
 
     console.error(error)
