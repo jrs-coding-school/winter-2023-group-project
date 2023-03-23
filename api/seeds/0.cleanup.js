@@ -3,11 +3,10 @@
  * @returns { Promise<void> } 
  */
 
-const data = require('./questions.json')
-
 exports.seed = async function(knex) {
   // Deletes ALL existing entries
+  await knex('response').del()
+  await knex('game').del()
   await knex('question').del()
-  await knex('question').insert(data);
+  await knex('user').del()
 };
-

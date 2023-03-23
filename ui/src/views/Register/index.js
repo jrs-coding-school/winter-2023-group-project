@@ -37,9 +37,9 @@ function RegistrationForm() {
 
       // console.log('token value', tokenValue.token)
 
-      await setToken(tokenValue.token)
+      setToken(tokenValue.token)
 
-      await routeToHome()
+      routeToHome()
       
     } catch (error) {
       console.log('READ THE ERROR HERE:', error)
@@ -52,8 +52,8 @@ function RegistrationForm() {
   let navigate = useNavigate()
 
   const routeToHome = () => {
-    let path = '/'
-    navigate(path)
+    navigate('/')
+    window.location.reload()
   }
 
   return (

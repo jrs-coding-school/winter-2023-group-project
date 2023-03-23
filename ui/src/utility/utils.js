@@ -46,3 +46,5 @@ export const clearToken = () => {
   localStorage.removeItem('session_token')
   return true
 }
+// randomizes an array
+export const shuffle = (array) => array.sort((a, b) => 0.5 - Math.random())

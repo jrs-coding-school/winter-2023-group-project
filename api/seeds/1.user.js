@@ -5,8 +5,8 @@
 exports.seed = async function(knex) {
   const bcrypt = require('bcrypt')
   
-  // Deletes ALL existing entries
-  await knex('user').del()
+  //Delete all game entries associated with this user
+ 
   await knex('user').insert([
     {
       user_id: 1,
@@ -19,6 +19,13 @@ exports.seed = async function(knex) {
       user_id: 2,
       email: 'test@gmail.com',
       username: 'randomguy',
+      password: await bcrypt.hash('kdjiwleji', 10),
+      dateCreated: new Date(Date.now())
+    },
+    {
+      user_id: 6,
+      email: 'test@hotmail.com',
+      username: 'statTestUser',
       password: await bcrypt.hash('kdjiwleji', 10),
       dateCreated: new Date(Date.now())
     }

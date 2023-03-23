@@ -17,7 +17,7 @@ exports.up = function(knex) {
     table.enu('gameMode', ['Quick Play', '3 Strikes', 'Fast 25']).notNullable()
     table.integer('score').notNullable()
     table.time('duration').notNullable()
-    table.timestamp('timestamp').notNullable()
+    table.timestamp('timestamp').notNullable().defaultTo(knex.fn.now())
   })
 };
 
