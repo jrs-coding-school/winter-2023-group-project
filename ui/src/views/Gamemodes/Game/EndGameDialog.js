@@ -41,7 +41,7 @@ export default function EndGameDialog(props) {
           <DialogContentText id="alert-dialog-description">
           Questions correct: {calculatedScore.length} out of {results.responses.length}
           <br/>
-          Score: {results.score}
+          Score: {(calculatedScore.length * 1000)}
           </DialogContentText>
         </DialogContent>
 
