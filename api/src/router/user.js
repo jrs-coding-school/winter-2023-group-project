@@ -1,9 +1,11 @@
-const { getUserByUsername } = require('../controller/user')
-
+const { getUserByUsername, getUserByToken } = require('../controller/user')
+const { authenticate } = require('../middleware/authenticate')
 
 const user = (app) => {
-  console.log('in the api user controller')
-  app.get('/user/:username', getUserByUsername )
+  
+  app.get('/user/token', authenticate, getUserByToken )
+  app.get('/user/username/:username', getUserByUsername)
+ 
 
 }
 

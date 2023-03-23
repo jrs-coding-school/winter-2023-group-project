@@ -3,9 +3,9 @@
  * @returns { Promise<void> } 
  */
 
-const data = require('./questions.json')
+const {getSeedQuestions} = require('../src/utility/utils')
 
 exports.seed = async function(knex) {
-  await knex('question').insert(data);
+  await knex('question').insert(getSeedQuestions());
 };
 
