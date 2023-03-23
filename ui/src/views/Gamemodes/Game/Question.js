@@ -120,7 +120,7 @@ function Question(props) {
                   variant="contained" 
                   color={ highlight ? answer.key === 'correct' ? "success" : "error" : "primary"} 
                   onClick={() => handleClick(answer.key)}
-                  style={{maxWidth: '350px', maxHeight: '75px', minWidth: '350px', minHeight: '75px', fontWeight: 'bold', fontSize:'16px'}}>
+                  style={{maxWidth: '350px', maxHeight: '150px', minWidth: '350px', minHeight: '75px', fontWeight: 'bold', fontSize:'16px'}}>
                     {answer.value}
                 </Button>
               </Grid>
