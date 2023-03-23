@@ -8,6 +8,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Button, TablePagination, TableSortLabel } from '@mui/material';
 import { Link as RouterLink } from "react-router-dom";
+import '../../mocks/data/leaderboard.json'
 
 
 const userData = [
@@ -81,6 +82,7 @@ const QuickPlayLeaderboard = function (props) {
   const [valueToOrderBy, setValueToOrderBy] = useState('score')
   const [page, setPage] = useState(0)
   const [rowsPerPage, setRowsPerPage] = useState(5, 10, 20)
+
 
   const handleRequestSort = (event, property) => {
     console.log('property:', property)

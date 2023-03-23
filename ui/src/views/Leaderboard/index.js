@@ -2,8 +2,10 @@ import React from "react"
 import { Grid } from "@mui/material"
 import QuickPlayLeaderboard from "./QuickPlayLeaderboard"
 import './index.css'
+import { getLeaderboard } from "../../utility/api"
 
-function Leaderboard (props) {
+
+function Leaderboard (props) { //do fetch request an pass in data as a prop - quickplay leaderboard
   return (
   <Grid>
     <h1 className="pageHeader">
