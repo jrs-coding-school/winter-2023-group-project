@@ -9,15 +9,15 @@ exports.up = function(knex) {
       .primary()
       .unique()
       .notNullable()
-    table.string('question').notNullable()
+    table.text('question').notNullable()
     table.enu('difficulty', ['Easy', 'Medium', 'Hard']).notNullable()
     table.enu('category', ['Arts & Literature', 'Film & TV', 'Food & Drink',
     'General Knowledge',  'Geography',  'History', 'Music', 'Science',
     'Society & Culture', 'Sport & Leisure']).notNullable()
-    table.string('correctAnswer').notNullable()
-    table.string('incorrectAnswer1').notNullable()
-    table.string('incorrectAnswer2').notNullable()
-    table.string('incorrectAnswer3').notNullable()
+    table.text('correctAnswer').notNullable()
+    table.text('incorrectAnswer1').notNullable()
+    table.text('incorrectAnswer2').notNullable()
+    table.text('incorrectAnswer3').notNullable()
     
   })
 };
