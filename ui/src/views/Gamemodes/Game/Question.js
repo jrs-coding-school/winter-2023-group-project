@@ -20,13 +20,23 @@ function Question(props) {
   //  console.log("highlight: ", highlight)
 
   const [shuffledAnswers, setShuffledAnswers] = useState(null)
+  const [progress, setProgress] = useState(100)
+
+  const pauseTimer = () => {
+    setProgress(0)
+  }
 
   const handleClick = (selected) => {
     // console.log(selected)
     checkAnswer(selected)
+    pauseTimer()
   }
 
   useEffect(() => {
+    console.log(question)
+    if (!question) {
+      return
+    }
     const answers = [
       {key: 'correct', value: question.correctAnswer}, 
       {key: 'incorrect 1', value: question.incorrectAnswer1}, 
@@ -66,9 +76,12 @@ function Question(props) {
     {/* Display timer */}
     <Grid item sx={{width: 500}}>
       <Timer
-      duration={5}
+      duration={10}
       checkAnswer={checkAnswer}
       question={question}
+      shuffledAnswers={shuffledAnswers}
+      progress={progress}
+      setProgress={setProgress}
       />
     </Grid>
     {/* 4 clickable answer components 

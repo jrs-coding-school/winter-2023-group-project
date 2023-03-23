@@ -13,10 +13,10 @@ export const handlers = [
    
     return res(ctx.json({username: "dantewanders"})) // respond using a mocked JSON body
   }),
-  rest.get(`${baseUrl}/trivia-questions`, (req, res, ctx) => { // capture "GET /greeting" requests
-    const result = getQuestion[Math.floor(Math.random()*getQuestion.length)]
-    return res(ctx.json(result)) // respond using a mocked JSON body
-  }),
+  // rest.get(`${baseUrl}/questions/random`, (req, res, ctx) => { // capture "GET /greeting" requests
+  //   const result = getQuestion[Math.floor(Math.random()*getQuestion.length)]
+  //   return res(ctx.json(result)) // respond using a mocked JSON body
+  // }),
 
   // rest.get(`${baseUrl}/user/:username`, (req, res, ctx) => { // capture "GET /greeting" requests
    

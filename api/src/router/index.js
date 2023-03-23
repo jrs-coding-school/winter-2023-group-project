@@ -4,6 +4,8 @@ const auth = require('./auth')
 const user = require('./user')
 const games = require('./games')
 const stats = require('./stats')
+const questions = require('./questions')
+
 
 const router = (app) => {
 
@@ -12,6 +14,7 @@ const router = (app) => {
   user(app)
   games(app)
   stats(app)
+  questions(app)
 
 }
 

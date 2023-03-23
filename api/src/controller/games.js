@@ -1,4 +1,4 @@
-const { showGamesByUsername } = require('../service/games')
+const { showGamesByUsername, createGame } = require('../service/games')
 
 exports.getGamesByUsername = async (req, res) => {
   
@@ -14,4 +14,24 @@ exports.getGamesByUsername = async (req, res) => {
     console.error(error)
     res.status(500).send("Internal Server Error")
   }
+}
+
+exports.addGame = async (req, res) => {
+
+  console.log(req.body)
+
+  const game = req.body
+  game.user_Id = req.userId
+
+  try {
+    
+    const result = await createGame(game)
+    
+    res.json(result)
+
+  } catch (error) {
+    console.error(error)
+    res.status(500).send("Internal Server Error")
+  }
+
 }

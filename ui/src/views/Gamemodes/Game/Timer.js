@@ -7,29 +7,28 @@ export default function Timer(props) {
   const {
     duration,
     checkAnswer,
-    question
-  } = props
-
-  const [progress, setProgress] = useState(100);
+    shuffledAnswers,
+    progress,
+    setProgress
+  } = props 
   
   useEffect(()=> {
-    if(question) {
-      setProgress(100)
-    }
-  }, [question])
+    setProgress(100)
+  }, [shuffledAnswers])
 
   useEffect(() => {
     const timer = setInterval(() => {
       setProgress((oldProgress) => {
-        if (oldProgress === 0) {
+        // console.log(oldProgress)
+        if (oldProgress <= 0) {
           checkAnswer('incorrect');
-          return null
+          return 0
         }
-        const diff = 100/duration;
+        const diff = (100/duration);
         return Math.min(oldProgress - diff, 100);
       });
     }, 1000);
-
+  
     return () => {
       clearInterval(timer);
     };
