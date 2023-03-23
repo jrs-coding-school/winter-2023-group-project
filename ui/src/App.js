@@ -3,6 +3,7 @@ import {Routes, Route} from 'react-router-dom'
 import Home from './views/Home'
 import NotFound from './views/NotFound'
 import Layout from './layouts'
+import Leaderboard from './views/Leaderboard'
 import ThemeContextProvider from './context/themeContext'
 import Login from './views/Login'
 import Logout from './views/Logout'
@@ -21,6 +22,7 @@ function App() {
             <Route index element={<Home/>}/>
             <Route path="/user/:username" element={<UserProfile/>}/>
             <Route path="/login" element={<Login/>}/>
+            <Route path="/leaderboard" element={<Leaderboard/>}/>
             <Route path="/user/logout" element={<Logout/>}/>
             <Route path="/register" element={<RegisterForm/>}/>
             <Route path="/gamemodes" element={<Gamemodes/>}/>

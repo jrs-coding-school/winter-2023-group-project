@@ -184,3 +184,21 @@ export const sendGameResults = async(token, data) => {
   
   return responseData
 }
+
+export const getLeaderboard = async() => {
+
+  const response = await fetch(`${baseUrl}/leaderboard`, {
+    method: "GET", 
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+
+  const responseData = await response.json()
+
+  if (!response.ok) {
+    throw new Error(`Status Code: ${response?.status} - ${responseData?.message}`)
+  }
+  
+  return responseData
+}
