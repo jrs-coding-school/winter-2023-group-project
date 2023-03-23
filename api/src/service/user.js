@@ -38,6 +38,6 @@ exports.updatePassword = async (id, password) => {
   const result = await knex('user').where('user_id', id).update({
     password: hash
   })
-console.log (result)
+
 return result
 }

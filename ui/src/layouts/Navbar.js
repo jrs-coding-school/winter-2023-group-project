@@ -20,6 +20,7 @@ function Navbar() {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
   const [user, setUser] = useState(null);
+  console.log(user)
 // console.log("user: ", user.username)
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -45,6 +46,7 @@ function Navbar() {
       //fetch user's data
       getUser(token)
         .then((data) => setUser(data))
+        
         .catch((error) => console.log(error))
     }
   
