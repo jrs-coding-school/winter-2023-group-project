@@ -68,7 +68,7 @@ export const register = async(data) => {
 export const getUserProfile = async (username) => {
 
   console.log(`${baseUrl}/user/${username}`)
-  const response = await fetch(`${baseUrl}/user/${username}`, {
+  const response = await fetch(`${baseUrl}/user/username/${username}`, {
     method: "GET",
   })
 
@@ -97,6 +97,7 @@ export const getUser = async(token) => {
     throw new Error(`Status Code: ${response?.status} - ${responseData?.message}`)
   }
   
+  return responseData
 }
 
 export const getGameHistory = async (username) => {

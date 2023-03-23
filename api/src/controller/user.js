@@ -1,4 +1,4 @@
-const { showUserByUsername } = require('../service/user')
+const { showUserByUsername, showUserById } = require('../service/user')
 
 exports.getUserByUsername= async (req, res) => {
   
@@ -8,7 +8,20 @@ exports.getUserByUsername= async (req, res) => {
     
     res.json(userByName)
     
+  } catch (error) {
 
+  
+    res.status(500).send("Internal Server Error")
+  }
+}
+
+exports.getUserByToken = async (req, res) => {
+  
+  try {
+    const userByToken = await showUserById(req.userId)
+    
+    res.json(userByToken)
+  
   } catch (error) {
 
   
