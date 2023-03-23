@@ -1,8 +1,6 @@
 import { Fragment, useEffect, useState } from 'react'
 import { Grid } from '@mui/material';
-import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
@@ -65,16 +63,28 @@ function Question(props) {
       Create a card with the text of the trivia question 
     */}
       <Grid item>
-        <Card sx={{ width: 275, background: 'grey' }}>
+        <Card sx={{ 
+          width: '700px', 
+          background: '#D3D3D3', 
+          height: '150px', 
+          ml:'50px', mr: '50px', mt: '20px', 
+          boxShadow:'3px 2px 7px rgb(0, 0, 0, 0.5)',
+          }}>
+          
           <CardContent>
-            <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+            <Typography 
+              sx={{ fontSize: 22 }} 
+              align='center'
+            >
               {question.question}
             </Typography>
+          
           </CardContent>
         </Card>
       </Grid>
-    {/* Display timer */}
-    <Grid item sx={{width: 500}}>
+    
+    {/* question timer */}
+    <Grid item>
       <Timer
       duration={10}
       checkAnswer={checkAnswer}
@@ -84,6 +94,7 @@ function Question(props) {
       setProgress={setProgress}
       />
     </Grid>
+
     {/* 4 clickable answer components 
       make a grid to equally space answers
       make a button for each answer with the text of the answer
@@ -93,14 +104,25 @@ function Question(props) {
         <Grid
           container
           direction="row"
-          justifyContent="space-evenly"
+          justifyContent="center"
           alignItems="center"
           spacing={2}
         >
           {shuffledAnswers.map((answer) => {
             return (
-              <Grid key={answer.key} item container direction="column" alignItems="center" justifyContent="center" xs={5}>
-                <Button variant="contained" color={ highlight ? answer.key === 'correct' ? "success" : "error" : "primary"} onClick={() => handleClick(answer.key)}>{answer.value}</Button>
+              <Grid container item 
+                key={answer.key} 
+                direction="column" 
+                alignItems="center" 
+                justifyContent="center" 
+                xs={5}>
+                <Button 
+                  variant="contained" 
+                  color={ highlight ? answer.key === 'correct' ? "success" : "error" : "primary"} 
+                  onClick={() => handleClick(answer.key)}
+                  style={{maxWidth: '350px', maxHeight: '75px', minWidth: '350px', minHeight: '75px', fontWeight: 'bold', fontSize:'16px'}}>
+                    {answer.value}
+                </Button>
               </Grid>
               )
           })}

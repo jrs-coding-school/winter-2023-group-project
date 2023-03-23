@@ -1,10 +1,11 @@
-import {Fragment} from 'react'
-import {useEffect, useState} from 'react'
-import {getQuestion, sendGameResults} from '../../../utility/api.js'
+import { Fragment } from 'react'
+import { useEffect, useState } from 'react'
+import Box from '@mui/material/Box'
+import { getQuestion, sendGameResults } from '../../../utility/api.js'
+import { getToken } from '../../../utility/utils.js'
 import Question from './Question.js'
 import GameTimer from './GameTimer'
 import EndGameDialog from './EndGameDialog.js'
-import { getToken } from '../../../utility/utils.js'
 
   // create an object to track question results
   let results = {
@@ -136,15 +137,20 @@ function Game(props) {
       {/* Create a component to display question and 4 selectable answers */}
       {!isEnd ? 
       <Fragment>
-        <GameTimer
-          duration={getGameDuration()}
-          endGame={endGame}
-        />
+
+        <Box align='center' mt='30px'>
+          <GameTimer
+            duration={getGameDuration()}
+            endGame={endGame}
+          />
+        </Box>
+        
         <Question
           question={question}
           checkAnswer={checkAnswer}
           highlight={highlight}
         />
+        
       </Fragment>
       :
       // give options for play again, or leaderboard
