@@ -1,11 +1,9 @@
 import React from 'react'
 import { Fragment } from 'react';
-import { Link } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import { Typography } from '@mui/material';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
 import './index.css'
 import LetsPlayButton from '../../components/LetsPlayButton';
 
@@ -90,8 +88,26 @@ function HowToPlay() {
         </Card>
 
       </Box>
+
+      <Box align='center' mb='10px'>
+        <Typography variant='body1'>
+            See how it works!
+        </Typography>
+      </Box>
+
+      <Box align='center'>
+        <Box
+          component="img"
+          sx={{ width: '650px', justifyContent: 'center', boxShadow:'3px 2px 7px rgb(0, 0, 0, 0.3)', borderRadius:'15px' }}
+          alt='Example gameplay'
+          src='/screenshot.png'
+        />
+      </Box>
       
-      <Box align='center' p='3px'>
+      <Box align='center' p='3px' mt='30px'>
+        <Typography variant='body1' mb='10px'>
+          Become a Trivia Genius!
+        </Typography>
         <LetsPlayButton />
       </Box>
 
