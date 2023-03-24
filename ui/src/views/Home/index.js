@@ -193,12 +193,20 @@ function Home(props) {
 
         </Grid>
 
-        {/* insert screenshot of gameplay here! */}
+        <Box align='center' mb='10px'>
+          <Typography variant='body1'>
+            See how it works!
+          </Typography>
+        </Box>
 
-        {/* 
-          question: Which English rock band released the song "Us and Them"?
-          options: Pink Floyd, Wings, Rudimental, The Alan Parsons Project 
-        */}
+        <Box align='center'>
+          <Box
+            component="img"
+            sx={{ width: '650px', justifyContent: 'center', boxShadow: '3px 2px 7px rgb(0, 0, 0, 0.3)', borderRadius: '15px' }}
+            alt='Example gameplay'
+            src='/screenshot.png'
+          />
+        </Box>
 
         <Grid
           container
