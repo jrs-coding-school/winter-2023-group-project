@@ -46,153 +46,150 @@ function Home(props) {
             About the Game
           </Typography>
 
-            {/* put a table of categories instead of just listing them out */}
-            {/* list difficulties */}
+          <Typography variant="body1" fontWeight='bold' fontSize='18px' mt='3px'>
+            Categories:
+          </Typography>
 
-            <Typography variant="body1" fontWeight='bold' fontSize='18px' mt='3px'>
-              Categories:
-            </Typography>
+          <Box width='400px'>
 
-            <Box width='400px'>
+            <Grid container
+              rowSpacing={1}
+              columnSpacing={{ xs: 1 }}
+              mt='3px'
+            >
 
-              <Grid container 
-                rowSpacing={1} 
-                columnSpacing={{ xs: 1 }}
-                mt='3px'
-              >
-                
-                <Grid item xs={6}>
-                  <ListItem sx={{ display: 'list-item' }}>
-                    Arts & Literature
-                  </ListItem>
-                </Grid>
-
-                <Grid item xs={6}>
-                  <ListItem sx={{ display: 'list-item' }}>
-                    Film & TV
-                  </ListItem>
-                </Grid>
-                
-                <Grid item xs={6}>
-                  <ListItem sx={{ display: 'list-item' }}>
-                    Food & Drink
-                  </ListItem>
-                </Grid>
-                
-                <Grid item xs={6}>
-                  <ListItem sx={{ display: 'list-item' }}>
-                    General Knowledge
-                  </ListItem>
-                </Grid>
-                
-                <Grid item xs={6}>
-                  <ListItem sx={{ display: 'list-item' }}>
-                    Geography
-                  </ListItem>
-                </Grid>
-                
-                <Grid item xs={6}>
-                  <ListItem sx={{ display: 'list-item' }}>
-                    History
-                  </ListItem>
-                </Grid>
-                
-                <Grid item xs={6}>
-                  <ListItem sx={{ display: 'list-item' }}>
-                    Music
-                  </ListItem>
-                </Grid>
-                
-                <Grid item xs={6}>
-                  <ListItem sx={{ display: 'list-item' }}>
-                    Science
-                  </ListItem>
-                </Grid>
-                
-                <Grid item xs={6}>
-                  <ListItem sx={{ display: 'list-item' }}>
-                    Society & Culture
-                  </ListItem>
-                </Grid>
-                
-                <Grid item xs={6}>
-                  <ListItem sx={{ display: 'list-item' }}>
-                    Sport & Leisure
-                  </ListItem>
-                </Grid>
-
-              </Grid>
-            
-            </Box>
-
-            <Typography variant="body1" fontWeight='bold' fontSize='18px' mt='20px'>
-              Game Modes:
-            </Typography>
-
-            <Box width='800px' mt='10px' ml='20px'>
-
-              <Grid item xs={12}>
-                <Typography variant="body1" fontWeight='bold' fontSize='16px' mt='3px'>
-                  Quick Play
-                </Typography>
-    
-                <ListItem>
-                  Three minutes of answering trivia questions in a category of your choice.
-                </ListItem>
-              </Grid>
-
-              <Grid item xs={12}>
-                <Typography variant="body1" fontWeight='bold' fontSize='16px' mt='3px'>
-                  3 Strikes
-                </Typography>
-                
-                <ListItem>
-                  Answer as many questions as possible before you answer three incorrectly.
-                </ListItem>
-              </Grid>
-              
-              <Grid item xs={12}>
-                <Typography variant="body1" fontWeight='bold' fontSize='16px' mt='3px'>
-                  Fast 25
-                </Typography>
-
-                <ListItem>
-                  Race against the clock and answer 25 questions correctly.
-                </ListItem>
-              </Grid>
-              
-            </Box>
-
-            <Typography component={Link} to='/how-to-play' variant="subtitle" color='grey' className="link">More details of each game mode</Typography>
-
-            <Typography variant="body1" fontWeight='bold' fontSize='18px' mt='20px'>
-              Difficulty settings:
-            </Typography>
-
-            <Box width='800px' mt='10px' ml='20px'>
-
-              <Grid item xs={12}>
+              <Grid item xs={6}>
                 <ListItem sx={{ display: 'list-item' }}>
-                  Easy
+                  Arts & Literature
                 </ListItem>
-    
               </Grid>
 
-              <Grid item xs={12}>
+              <Grid item xs={6}>
                 <ListItem sx={{ display: 'list-item' }}>
-                 Medium
+                  Film & TV
                 </ListItem>
-                
               </Grid>
-              
-              <Grid item xs={12}>
-                <ListItem sx={{ display: 'list-item' }}>
-                  Hard
-                </ListItem>
 
+              <Grid item xs={6}>
+                <ListItem sx={{ display: 'list-item' }}>
+                  Food & Drink
+                </ListItem>
               </Grid>
-              
-            </Box>
+
+              <Grid item xs={6}>
+                <ListItem sx={{ display: 'list-item' }}>
+                  General Knowledge
+                </ListItem>
+              </Grid>
+
+              <Grid item xs={6}>
+                <ListItem sx={{ display: 'list-item' }}>
+                  Geography
+                </ListItem>
+              </Grid>
+
+              <Grid item xs={6}>
+                <ListItem sx={{ display: 'list-item' }}>
+                  History
+                </ListItem>
+              </Grid>
+
+              <Grid item xs={6}>
+                <ListItem sx={{ display: 'list-item' }}>
+                  Music
+                </ListItem>
+              </Grid>
+
+              <Grid item xs={6}>
+                <ListItem sx={{ display: 'list-item' }}>
+                  Science
+                </ListItem>
+              </Grid>
+
+              <Grid item xs={6}>
+                <ListItem sx={{ display: 'list-item' }}>
+                  Society & Culture
+                </ListItem>
+              </Grid>
+
+              <Grid item xs={6}>
+                <ListItem sx={{ display: 'list-item' }}>
+                  Sport & Leisure
+                </ListItem>
+              </Grid>
+
+            </Grid>
+
+          </Box>
+          
+          <Typography variant="body1" fontWeight='bold' fontSize='18px' mt='20px'>
+            Game Modes:
+          </Typography>
+
+          <Box width='800px' mt='10px' ml='20px'>
+
+            <Grid item xs={12}>
+              <Typography variant="body1" fontWeight='bold' fontSize='16px' mt='3px'>
+                Quick Play
+              </Typography>
+
+              <ListItem>
+                Three minutes of answering trivia questions in a category of your choice.
+              </ListItem>
+            </Grid>
+
+            <Grid item xs={12}>
+              <Typography variant="body1" fontWeight='bold' fontSize='16px' mt='3px'>
+                3 Strikes
+              </Typography>
+
+              <ListItem>
+                Answer as many questions as possible before you answer three incorrectly.
+              </ListItem>
+            </Grid>
+
+            <Grid item xs={12}>
+              <Typography variant="body1" fontWeight='bold' fontSize='16px' mt='3px'>
+                Fast 25
+              </Typography>
+
+              <ListItem>
+                Race against the clock and answer 25 questions correctly.
+              </ListItem>
+            </Grid>
+
+          </Box>
+
+          <Typography component={Link} to='/how-to-play' variant="subtitle" color='grey' className="link">More details of each game mode</Typography>
+
+          <Typography variant="body1" fontWeight='bold' fontSize='18px' mt='20px'>
+            Difficulty settings:
+          </Typography>
+
+          <Box width='800px' mt='10px' ml='20px'>
+
+            <Grid item xs={12}>
+              <ListItem sx={{ display: 'list-item' }}>
+                Easy
+              </ListItem>
+
+            </Grid>
+
+            <Grid item xs={12}>
+              <ListItem sx={{ display: 'list-item' }}>
+                Medium
+              </ListItem>
+
+            </Grid>
+
+            <Grid item xs={12}>
+              <ListItem sx={{ display: 'list-item' }}>
+                Hard
+              </ListItem>
+
+            </Grid>
+
+          </Box>
 
         </Grid>
 
@@ -212,7 +209,7 @@ function Home(props) {
           <Typography variant="h5" mt='30px' mb="15px">
             Ready to become a Trivia Genius?
           </Typography>
-        
+
           <LetsPlayButton />
         </Grid>
 
