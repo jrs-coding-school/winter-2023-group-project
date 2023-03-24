@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import Grid from '@mui/material/Grid'
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -7,21 +8,9 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Button, TablePagination, TableSortLabel } from '@mui/material';
-import { Link as RouterLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import '../../mocks/data/leaderboard.json'
 import { getLeaderboard } from '../../utility/api';
-
-
-// const userData = [
-//   { user_id: 'Bob', score: 159, duration: 6.01, difficulty: 'easy' },
-//   { user_id: 'Tom', score: 7, duration: 3.43, difficulty: 'hard' },
-//   { user_id: 'Nancy', score: 654, duration: 4.13, difficulty: 'medium' },
-//   { user_id: 'Lisa', score: 54, duration: 2.24, difficulty: "easy" },
-//   { user_id: 'Mike', score: 218, duration: 7.18, difficulty: "medium" },
-//   { user_id: 'Shelby', score: 87, duration: 3.56, difficulty: "hard" },
-//   { user_id: 'Frank', score: 356, duration: 4.02, difficulty: "meduim" },
-// ];
-
 
 function descindingComparator(a,b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -85,14 +74,14 @@ const QuickPlayLeaderboard = function (props) {
   const [page, setPage] = useState(0)
   const [rowsPerPage, setRowsPerPage] = useState(5, 10, 20)
   const [data, setData] = useState(null)
-
+  const [gameMode, setGameMode] = useState('Quick Play')
   console.log(data)
 
   useEffect(() => {
-    getLeaderboard()
+    getLeaderboard(gameMode)
       .then(data => setData(data))
       .catch((error) => console.log(error))
-  }, [])
+  }, [gameMode])
 
   const handleRequestSort = (event, property) => {
     console.log('property:', property)
@@ -127,7 +116,27 @@ const QuickPlayLeaderboard = function (props) {
       <TableHead>
           <TableRow>
             <TableCell  sx={{color: '#42a5f5'}} align="center" colSpan={4}>
-                <h2>Quick Pick</h2>
+              <Grid container 
+                direction="row"
+                justifyContent="center"
+                alignItems="center"
+                spacing={3}>
+                <Grid item>
+                  <Button variant="contained" onClick={() => setGameMode('Quick Play')}>
+                    Quick Play
+                  </Button>
+                </Grid>
+                <Grid item>
+                  <Button variant="contained" onClick={() => setGameMode('Fast 25')}>
+                    Fast 25
+                  </Button>
+                </Grid>
+                <Grid item>
+                  <Button variant="contained" onClick={() => setGameMode('3 Strikes')}>
+                    3 Strikes
+                  </Button>
+                </Grid>
+              </Grid>
             </TableCell>
           </TableRow>
       </TableHead>
@@ -163,7 +172,7 @@ const QuickPlayLeaderboard = function (props) {
             </TableSortLabel>
           </TableCell>
           
-          <TableCell 
+          {/* <TableCell 
             key="difficulty" 
             align="right">
             <TableSortLabel 
@@ -172,7 +181,7 @@ const QuickPlayLeaderboard = function (props) {
               onClick={createSortHandler("difficulty")}>
               <h4>Difficulty</h4>
             </TableSortLabel>
-          </TableCell>
+          </TableCell> */}
         </TableRow>
       </TableHead>
       
@@ -185,14 +194,13 @@ const QuickPlayLeaderboard = function (props) {
             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
             <TableCell component="th" scope="user">
               <Button
-                component={RouterLink} 
-                to="/user/:username">
-                  {user.user_id}
+                component={Link} 
+                to={`/user/${user.username}`}>
+                  {user.username}
               </Button>
             </TableCell>
             <TableCell align="right">{user.score}</TableCell>
             <TableCell align="right">{user.duration}</TableCell>
-            <TableCell align="right">{user.difficulty}</TableCell>
           </TableRow>
         ))}
       </TableBody>

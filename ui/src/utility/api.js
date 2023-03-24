@@ -185,9 +185,9 @@ export const sendGameResults = async(token, data) => {
   return responseData
 }
 
-export const getLeaderboard = async() => {
+export const getLeaderboard = async(gameMode) => {
 
-  const response = await fetch(`${baseUrl}/leaderboard`, {
+  const response = await fetch(`${baseUrl}/leaderboard?gameMode=${encodeURIComponent(gameMode)}`, {
     method: "GET", 
     headers: {
       'Content-Type': 'application/json',

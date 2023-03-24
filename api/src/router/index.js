@@ -5,6 +5,7 @@ const user = require('./user')
 const games = require('./games')
 const stats = require('./stats')
 const questions = require('./questions')
+const leaderboard = require('./leaderboard')
 
 
 const router = (app) => {
@@ -15,6 +16,7 @@ const router = (app) => {
   games(app)
   stats(app)
   questions(app)
+  leaderboard(app)
 
 }
 

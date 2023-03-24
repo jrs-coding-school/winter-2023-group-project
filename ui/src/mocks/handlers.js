@@ -15,9 +15,9 @@ export const handlers = [
    
     return res(ctx.json({username: "dantewanders"})) // respond using a mocked JSON body
   }),
-  rest.get(`${baseUrl}/leaderboard`, (req, res, ctx) => { // capture "GET /greeting" requests
-    return res(ctx.json(leaderboard)) // respond using a mocked JSON body
-  }),
+  // rest.get(`${baseUrl}/leaderboard`, (req, res, ctx) => { // capture "GET /greeting" requests
+  //   return res(ctx.json(leaderboard)) // respond using a mocked JSON body
+  // }),
   // rest.get(`${baseUrl}/questions/random`, (req, res, ctx) => { // capture "GET /greeting" requests
   //   const result = getQuestion[Math.floor(Math.random()*getQuestion.length)]
   //   return res(ctx.json(result)) // respond using a mocked JSON body
