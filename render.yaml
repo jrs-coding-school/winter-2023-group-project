@@ -2,7 +2,7 @@ services:
   - type: web
     name: frontend-winter-2023-group-project
     env: static
-    buildCommand: cd ui; npm install; npm build
+    buildCommand: cd ui; yarn install --production=false; yarn build
     staticPublishPath: ui/build/
     buildFilter:
       paths:
@@ -15,7 +15,8 @@ services:
     name: backend-winter-2023-group-project
     plan: free
     env: node
-    startCommand: cd api; npm start
+    buildCommand: cd api; yarn
+    startCommand: cd api; yarn start
     buildFilter:
       paths:
         - api/**/*.js
