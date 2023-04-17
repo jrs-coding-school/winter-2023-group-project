@@ -15,7 +15,7 @@ services:
     name: backend-winter-2023-group-project # Change to your project name
     plan: free
     env: node
-    buildCommand: cd api; yarn; npx knex migrate:latest
+    buildCommand: cd api; yarn; npx knex migrate:latest; npx knex seed:run --specific=2.question.js
     startCommand: cd api; yarn run prod
     buildFilter:
       paths:
