@@ -1,5 +1,6 @@
 services:
   - type: web
+    plan: free
     name: frontend-winter-2023-group-project
     env: static
     buildCommand: cd ui; npm install; npm build
@@ -13,6 +14,7 @@ services:
         destination: /index.html
   - type: web
     name: backend-winter-2023-group-project
+    plan: free
     env: node
     buildCommand: cd api; npm install
     startCommand: cd api; npm start
@@ -21,5 +23,6 @@ services:
         - api/**/*.js
 databases:
   - name: database-winter-2023-group-project
+    plan: free
     databaseName: trivia_db
     ipAllowList: [] # only allow internal connections
