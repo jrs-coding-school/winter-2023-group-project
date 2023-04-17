@@ -21,5 +21,5 @@ services:
         - api/**/*.js
 databases:
   - name: database-winter-2023-group-project
-    databaseName: triviaDB 
+    databaseName: trivia_db
     ipAllowList: [] # only allow internal connections
