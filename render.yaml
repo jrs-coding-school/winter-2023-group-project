@@ -15,7 +15,6 @@ services:
     name: backend-winter-2023-group-project
     plan: free
     env: node
-    buildCommand: cd api; npm
     startCommand: cd api; npm start
     buildFilter:
       paths:
